@@ -1,0 +1,16 @@
+.wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 1200;
+  pointer-events: none;
+}
+.bar {
+  display: block;
+  height: 100%;
+  background: var(--grad);
+  box-shadow: 0 0 14px rgba(59, 130, 246, 0.7);
+  transform-origin: left;
+}

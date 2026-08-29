@@ -1,0 +1,134 @@
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.7rem 1.6rem 1.5rem;
+  overflow: hidden;
+  transition: box-shadow 0.5s var(--ease), border-color 0.4s;
+  will-change: transform;
+  height: 100%;
+}
+.card:hover {
+  box-shadow: var(--sh-lg);
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.glow {
+  position: absolute;
+  inset: -40% 40% 60% -40%;
+  border-radius: 50%;
+  background: radial-gradient(circle, color-mix(in srgb, var(--accent) 34%, transparent), transparent 68%);
+  filter: blur(36px);
+  opacity: 0.5;
+  transition: opacity 0.6s var(--ease), transform 0.8s var(--ease);
+  pointer-events: none;
+}
+.card:hover .glow {
+  opacity: 0.9;
+  transform: translate(14%, 10%) scale(1.15);
+}
+
+.head {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+}
+.format {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.26rem 0.62rem;
+  border-radius: 99px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+}
+.position {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-mute);
+}
+.position svg {
+  color: var(--accent);
+}
+
+.name {
+  position: relative;
+  font-size: 1.28rem;
+  letter-spacing: -0.02em;
+}
+.scope {
+  position: relative;
+  font-size: 0.88rem;
+  color: var(--text-mute);
+}
+
+.stats {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 0.4rem;
+  padding: 0.9rem 0;
+  border-block: 1px solid var(--brd);
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.statValue {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  line-height: 1;
+}
+.statLabel {
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.form {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+.formLabel {
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+}
+
+.goal {
+  position: relative;
+  font-size: 0.9rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+.goal span {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+  margin-bottom: 0.15rem;
+}
+
+.link {
+  position: relative;
+  margin-top: auto;
+  padding-top: 0.9rem;
+  align-self: flex-start;
+  color: var(--accent);
+}

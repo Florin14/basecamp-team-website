@@ -1,0 +1,10 @@
+export { ClubIntro } from './ClubIntro';
+export { Competitions } from './Competitions';
+export { Contact } from './Contact';
+export { Gallery } from './Gallery';
+export { Hero } from './Hero';
+export { NewsPreview } from './NewsPreview';
+export { NextMatch } from './NextMatch';
+export { ResultsAndStandings } from './ResultsAndStandings';
+export { SquadPreview } from './SquadPreview';
+export { Sponsors } from './Sponsors';

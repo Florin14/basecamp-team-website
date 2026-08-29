@@ -1,0 +1,69 @@
+.shell {
+  position: relative;
+  z-index: 2;
+}
+.grid {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(1.5rem, 3.5vw, 2.5rem);
+  align-items: start;
+}
+.matches {
+  display: grid;
+  gap: 1.1rem;
+}
+.table {
+  align-self: stretch;
+}
+.switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+}
+.switch {
+  padding: 0.42rem 0.9rem;
+  border-radius: 99px;
+  border: 1px solid var(--brd);
+  background: var(--glass-bg);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-mute);
+  transition: 0.3s var(--ease);
+}
+.switch:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+.switchActive {
+  color: #fff;
+  border-color: transparent;
+  background: var(--accent);
+  box-shadow: 0 8px 20px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+.tableMetaRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem;
+  margin-bottom: 0.8rem;
+  flex-wrap: wrap;
+}
+.tableMeta {
+  font-size: 0.8rem;
+  color: var(--text-mute);
+}
+.tableSticky {
+  position: sticky;
+  top: calc(var(--nav-h) + 1.5rem);
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .tableSticky {
+    position: static;
+  }
+}

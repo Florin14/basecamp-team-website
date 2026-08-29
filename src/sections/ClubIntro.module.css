@@ -1,0 +1,218 @@
+.grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1fr;
+  gap: clamp(2.2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+.visual {
+  position: relative;
+}
+.frame {
+  will-change: transform;
+  position: relative;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--sh-lg);
+}
+.frame img {
+  width: 100%;
+  aspect-ratio: 4 / 4.6;
+  object-fit: cover;
+}
+.overlay {
+  position: absolute;
+  left: 1.1rem;
+  right: 1.1rem;
+  bottom: 1.1rem;
+  padding: 0.9rem 1.1rem;
+  border-radius: var(--r);
+  box-shadow: var(--sh-md);
+}
+.overlayKey {
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+}
+.overlayValue {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.halo {
+  position: absolute;
+  inset: -14% -10% -10% -14%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.32), transparent 66%);
+  filter: blur(40px);
+}
+
+.body {
+  position: relative;
+  display: grid;
+  gap: 2rem;
+  padding-left: 2.2rem;
+}
+.drawLine {
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  width: 4px;
+  height: min(100%, 340px);
+}
+.drawLine path {
+  stroke-dasharray: 340;
+  stroke-dashoffset: 340;
+  transition: stroke-dashoffset 1.6s var(--ease);
+}
+.drawLineIn path {
+  stroke-dashoffset: 0;
+}
+.frameGlow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.28), transparent 45%);
+  opacity: 0;
+  transition: opacity 0.6s var(--ease);
+}
+.frame:hover .frameGlow {
+  opacity: 1;
+}
+.para + .para {
+  margin-top: 1rem;
+}
+.facts {
+  list-style: none;
+  margin-top: 2rem;
+  display: grid;
+  gap: 0.85rem;
+}
+.facts li {
+  transition: transform 0.5s var(--ease), border-color 0.4s;
+  display: grid;
+  grid-template-columns: 10rem 1fr;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--brd);
+  font-size: 0.95rem;
+}
+.facts li:hover {
+  transform: translateX(6px);
+  border-color: var(--blue-500);
+}
+.facts strong {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.facts span {
+  color: var(--text-mute);
+}
+
+.meters {
+  display: grid;
+  gap: 1.05rem;
+}
+.meter {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.3rem 0.8rem;
+  align-items: center;
+}
+.meterLabel {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-strong);
+}
+.meterNum {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--blue-600);
+  font-variant-numeric: tabular-nums;
+}
+.track {
+  grid-column: 1 / -1;
+  height: 6px;
+  border-radius: 99px;
+  background: var(--brd);
+  overflow: hidden;
+}
+.track i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--grad);
+  transition: width 1.5s var(--ease);
+}
+
+.coach {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  border-radius: var(--r-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-brd);
+  box-shadow: var(--sh-sm);
+  flex-wrap: wrap;
+}
+.coach img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.coach > div {
+  flex: 1;
+}
+.coachRole {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.74rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  font-weight: 600;
+}
+.coachName {
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--text-strong);
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .visual {
+    max-width: 26rem;
+  }
+}
+@media (max-width: 620px) {
+  .coach {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  .coach > div {
+    flex: none;
+  }
+}
+@media (max-width: 560px) {
+  .body {
+    padding-left: 1.5rem;
+  }
+  .facts li {
+    grid-template-columns: 1fr;
+    gap: 0.2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawLine path {
+    stroke-dashoffset: 0;
+  }
+}

@@ -1,0 +1,150 @@
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 0 0 1.3rem;
+  transition: box-shadow 0.5s var(--ease), border-color 0.4s;
+  will-change: transform;
+}
+.card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  background: radial-gradient(
+    420px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(59, 130, 246, 0.16),
+    transparent 62%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+.card:hover {
+  box-shadow: var(--sh-lg);
+  border-color: rgba(37, 99, 235, 0.32);
+}
+.card:hover::before {
+  opacity: 1;
+}
+
+.number {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  z-index: 1;
+  font-family: var(--font-display);
+  font-size: 4.2rem;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--blue-500);
+  opacity: 0.16;
+  letter-spacing: -0.05em;
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.ring {
+  position: absolute;
+  right: -30%;
+  top: -22%;
+  width: 78%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255, 255, 255, 0.35);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease);
+  animation: spin 22s linear infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+.card:hover .ring {
+  opacity: 1;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ring {
+    animation: none;
+  }
+}
+
+.captain {
+  position: absolute;
+  top: 0.9rem;
+  left: 0.9rem;
+  z-index: 3;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 99px;
+  background: var(--grad);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+}
+
+.media {
+  position: relative;
+  background: linear-gradient(180deg, rgba(96, 165, 250, 0.18), transparent 70%);
+  display: grid;
+  place-items: end center;
+  overflow: hidden;
+}
+.media img {
+  width: 100%;
+  aspect-ratio: 4 / 4.4;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease);
+}
+.card:hover .media img {
+  transform: scale(1.07);
+}
+.card:hover .number {
+  opacity: 0.3;
+  transform: translateY(-4px);
+}
+
+.body {
+  padding: 1.1rem 1.3rem 0;
+}
+.position {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+}
+.name {
+  font-size: 1.12rem;
+  margin: 0.3rem 0 0.35rem;
+  letter-spacing: -0.02em;
+}
+.meta {
+  font-size: 0.84rem;
+  color: var(--text-mute);
+}
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--brd);
+}
+.stats div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.stats dt {
+  white-space: nowrap;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  order: 2;
+}
+.stats dd {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--text-strong);
+  line-height: 1.1;
+}

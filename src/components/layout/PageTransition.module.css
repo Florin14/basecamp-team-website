@@ -1,0 +1,45 @@
+.page {
+  transition: opacity 0.55s var(--ease), transform 0.55s var(--ease);
+}
+.entering {
+  opacity: 0;
+  transform: translateY(16px);
+}
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 1300;
+  pointer-events: none;
+  transform-origin: left center;
+  background: var(--grad);
+  opacity: 0.9;
+  animation: sweep 0.75s var(--ease-io) forwards;
+}
+@keyframes sweep {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left center;
+  }
+  45% {
+    transform: scaleX(1);
+    transform-origin: left center;
+  }
+  46% {
+    transform: scaleX(1);
+    transform-origin: right center;
+  }
+  100% {
+    transform: scaleX(0);
+    transform-origin: right center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .curtain {
+    display: none;
+  }
+  .entering {
+    opacity: 1;
+    transform: none;
+  }
+}

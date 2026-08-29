@@ -1,0 +1,54 @@
+.cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9998;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.cursor:global(.on) {
+  opacity: 1;
+}
+.dot,
+.ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.dot {
+  width: 6px;
+  height: 6px;
+  background: var(--blue-600);
+  transition: width 0.25s, height 0.25s, background 0.25s;
+}
+.ring {
+  width: 34px;
+  height: 34px;
+  border: 1.5px solid var(--blue-500);
+  transition: width 0.35s var(--ease), height 0.35s var(--ease), background 0.3s,
+    border-color 0.3s;
+}
+.cursor:global(.hover) .ring {
+  width: 58px;
+  height: 58px;
+  background: rgba(37, 99, 235, 0.12);
+  border-color: var(--blue-600);
+}
+.cursor:global(.hover) .dot {
+  width: 0;
+  height: 0;
+}
+.cursor:global(.card) .ring {
+  width: 78px;
+  height: 78px;
+  background: rgba(37, 99, 235, 0.14);
+  border-color: transparent;
+}
+@media (hover: none), (pointer: coarse) {
+  .cursor {
+    display: none;
+  }
+}

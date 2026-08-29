@@ -1,0 +1,88 @@
+/* =========================================================
+   Design tokens — limbajul vizual albastru/alb cu glassmorphism,
+   portat din v2/assets/css/styles.css.
+   ========================================================= */
+:root {
+  --blue-900: #1e3a8a;
+  --blue-800: #1e40af;
+  --blue-700: #1d4ed8;
+  --blue-600: #2563eb;
+  --blue-500: #3b82f6;
+  --blue-400: #60a5fa;
+  --blue-200: #bfdbfe;
+  --blue-50: #eff6ff;
+
+  --bg: #ffffff;
+  --bg-soft: #f7faff;
+  --surface: #ffffff;
+  --glass-bg: rgba(255, 255, 255, 0.62);
+  --glass-brd: rgba(37, 99, 235, 0.14);
+  --glass-hi: rgba(255, 255, 255, 0.9);
+
+  --text: #334155;
+  --text-strong: #1e3a8a;
+  --text-mute: #64748b;
+  --brd: rgba(30, 58, 138, 0.12);
+
+  /* rezultate: victorie / egal / înfrângere */
+  --win: #16a34a;
+  --draw: #f59e0b;
+  --loss: #dc2626;
+  --win-soft: rgba(22, 163, 74, 0.12);
+  --draw-soft: rgba(245, 158, 11, 0.14);
+  --loss-soft: rgba(220, 38, 38, 0.12);
+
+  --grad: linear-gradient(120deg, var(--blue-600) 0%, var(--blue-500) 50%, var(--blue-400) 100%);
+  --grad-text: linear-gradient(100deg, var(--blue-700) 0%, var(--blue-500) 55%, var(--blue-400) 100%);
+
+  --sh-sm: 0 1px 2px rgba(30, 58, 138, 0.06), 0 2px 8px rgba(30, 58, 138, 0.05);
+  --sh-md: 0 6px 18px rgba(30, 58, 138, 0.08), 0 2px 6px rgba(30, 58, 138, 0.05);
+  --sh-lg: 0 24px 60px rgba(30, 58, 138, 0.14), 0 8px 20px rgba(30, 58, 138, 0.07);
+  --sh-glow: 0 12px 40px rgba(37, 99, 235, 0.36);
+
+  --r-sm: 12px;
+  --r: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+  --shell: 1200px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-io: cubic-bezier(0.65, 0, 0.35, 1);
+  --nav-h: 76px;
+
+  --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Poppins', 'Inter', system-ui, sans-serif;
+}
+
+[data-theme='dark'] {
+  --bg: #060b1b;
+  --bg-soft: #0a1226;
+  --surface: #0e1730;
+  --glass-bg: rgba(18, 29, 58, 0.58);
+  --glass-brd: rgba(96, 165, 250, 0.2);
+  --glass-hi: rgba(96, 165, 250, 0.1);
+
+  --text: #a9b8d4;
+  --text-strong: #e8f0ff;
+  --text-mute: #7c8dae;
+  --brd: rgba(96, 165, 250, 0.16);
+
+  --win: #4ade80;
+  --draw: #fbbf24;
+  --loss: #f87171;
+  --win-soft: rgba(74, 222, 128, 0.14);
+  --draw-soft: rgba(251, 191, 36, 0.16);
+  --loss-soft: rgba(248, 113, 113, 0.14);
+
+  --grad-text: linear-gradient(100deg, #93c5fd 0%, #60a5fa 55%, #3b82f6 100%);
+
+  --sh-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --sh-md: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --sh-lg: 0 28px 70px rgba(0, 0, 0, 0.55);
+  --sh-glow: 0 12px 44px rgba(59, 130, 246, 0.45);
+}
+
+@media (max-width: 860px) {
+  :root {
+    --nav-h: 66px;
+  }
+}

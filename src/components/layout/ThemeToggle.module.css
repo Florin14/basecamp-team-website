@@ -1,0 +1,52 @@
+.toggle {
+  padding: 4px;
+  border-radius: 99px;
+  flex: none;
+}
+.track {
+  display: block;
+  width: 54px;
+  height: 29px;
+  border-radius: 99px;
+  background: var(--blue-50);
+  border: 1px solid var(--brd);
+  position: relative;
+  transition: background 0.4s;
+}
+[data-theme='dark'] .track {
+  background: rgba(96, 165, 250, 0.14);
+}
+.thumb {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 23px;
+  height: 23px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.45);
+  transition: transform 0.45s var(--ease);
+}
+[data-theme='dark'] .thumb {
+  transform: translateX(25px);
+}
+.sun,
+.moon {
+  position: absolute;
+  transition: opacity 0.3s, transform 0.45s var(--ease);
+}
+.moon {
+  opacity: 0;
+  transform: rotate(-90deg);
+}
+[data-theme='dark'] .sun {
+  opacity: 0;
+  transform: rotate(90deg);
+}
+[data-theme='dark'] .moon {
+  opacity: 1;
+  transform: none;
+}

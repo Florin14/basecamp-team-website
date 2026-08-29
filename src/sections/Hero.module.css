@@ -1,0 +1,345 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding: calc(var(--nav-h) + 3rem) 0 7rem;
+  overflow: hidden;
+}
+.inner {
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  max-width: 62rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-strong);
+  margin-bottom: 1.6rem;
+  box-shadow: var(--sh-sm);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(2.9rem, 1.2rem + 8vw, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.98;
+  margin-bottom: 1.1rem;
+  color: var(--text-strong);
+}
+.line {
+  display: block;
+  padding-bottom: 0.06em;
+}
+
+.sub {
+  font-family: var(--font-display);
+  font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  margin-bottom: 1.5rem;
+  min-height: 1.6em;
+  outline: none;
+}
+.scramble {
+  display: inline-block;
+  min-height: 1em;
+}
+
+.subLine {
+  max-width: 42rem;
+  margin: 0 auto 2.2rem;
+  font-size: clamp(1.02rem, 0.98rem + 0.4vw, 1.2rem);
+  color: var(--text);
+}
+.subLine strong {
+  color: var(--text-strong);
+  font-weight: 600;
+}
+.mark {
+  position: relative;
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text-strong);
+  background: linear-gradient(transparent 62%, rgba(96, 165, 250, 0.34) 62%);
+}
+
+.cta {
+  display: flex;
+  gap: 0.9rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--brd);
+  flex-wrap: wrap;
+}
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.stat dt {
+  font-size: 0.76rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  order: 2;
+}
+.stat dd {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 1.3rem + 1.4vw, 2.5rem);
+  font-weight: 700;
+  color: var(--text-strong);
+  line-height: 1.1;
+}
+
+/* ---------- Elemente flotante ---------- */
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+.float {
+  position: absolute;
+  will-change: transform;
+}
+.floatBall {
+  left: 8%;
+  top: 26%;
+  color: var(--blue-500);
+  opacity: 0.5;
+}
+.floatCrest {
+  right: 9%;
+  top: 20%;
+  opacity: 0.5;
+  filter: drop-shadow(0 18px 30px rgba(30, 58, 138, 0.22));
+}
+.floatDot,
+.floatDot2 {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--grad);
+  box-shadow: 0 0 22px rgba(59, 130, 246, 0.75);
+}
+.floatDot {
+  left: 22%;
+  top: 16%;
+}
+.floatDot2 {
+  right: 24%;
+  bottom: 22%;
+}
+.floatRing {
+  left: 13%;
+  bottom: 24%;
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(37, 99, 235, 0.35);
+}
+.chipWrap {
+  right: 12%;
+  bottom: 26%;
+}
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 14px;
+  color: var(--blue-600);
+  font-size: 0.86rem;
+  font-weight: 600;
+  box-shadow: var(--sh-md);
+  transform: rotate(-4deg);
+}
+.formChipWrap {
+  left: 6%;
+  top: 58%;
+}
+.formChip {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.85rem;
+  border-radius: 14px;
+  box-shadow: var(--sh-md);
+  transform: rotate(3deg);
+  animation: floaty 9s ease-in-out infinite;
+}
+.formChipLabel {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  font-weight: 600;
+}
+
+/* ---------- Banda cu competiții ---------- */
+.ticker {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 3.4rem;
+  z-index: 2;
+  overflow: hidden;
+  padding: 0.7rem 0;
+  border-block: 1px solid var(--brd);
+  background: color-mix(in srgb, var(--bg) 60%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+}
+.tickerTrack {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  width: max-content;
+  animation: tickerScroll 32s linear infinite;
+}
+.tickerItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  white-space: nowrap;
+}
+.tickerDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+@keyframes tickerScroll {
+  to {
+    transform: translateX(-33.333%);
+  }
+}
+
+.scrollHint {
+  position: absolute;
+  left: 50%;
+  bottom: 0.6rem;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  color: var(--text-mute);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.mouse {
+  width: 22px;
+  height: 34px;
+  border: 1.8px solid currentColor;
+  border-radius: 14px;
+  position: relative;
+  opacity: 0.6;
+}
+.mouse span {
+  position: absolute;
+  left: 50%;
+  top: 6px;
+  width: 3px;
+  height: 7px;
+  border-radius: 2px;
+  background: var(--blue-500);
+  transform: translateX(-50%);
+  animation: wheel 1.8s var(--ease-io) infinite;
+}
+@keyframes wheel {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -4px);
+  }
+  35% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, 12px);
+  }
+}
+.hintLabel {
+  animation: bobSmall 2.2s ease-in-out infinite;
+}
+@keyframes bobSmall {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(5px);
+  }
+}
+
+@media (max-width: 1180px) {
+  .formChipWrap {
+    display: none;
+  }
+}
+@media (max-width: 1024px) {
+  .floatBall,
+  .floatCrest {
+    opacity: 0.3;
+  }
+  .chipWrap,
+  .floatRing {
+    display: none;
+  }
+}
+@media (max-width: 860px) {
+  .scene {
+    display: none;
+  }
+  .stats {
+    gap: 1.6rem 2rem;
+  }
+  .scrollHint {
+    display: none;
+  }
+  .ticker {
+    bottom: 1rem;
+  }
+}
+@media (max-width: 560px) {
+  .cta {
+    width: 100%;
+  }
+  .cta > * {
+    flex: 1 1 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tickerTrack,
+  .formChip,
+  .hintLabel,
+  .mouse span {
+    animation: none;
+  }
+}

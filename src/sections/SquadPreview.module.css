@@ -1,0 +1,34 @@
+.railWrap {
+  margin-top: 0.5rem;
+}
+.rail {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  padding: 0.5rem 0 2rem;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 3%, #000 97%, transparent);
+}
+.rail::-webkit-scrollbar {
+  display: none;
+}
+.track {
+  display: flex;
+  gap: 1.5rem;
+  padding-inline: max(1.25rem, calc(50vw - var(--shell) / 2));
+}
+.item {
+  flex: 0 0 clamp(240px, 26vw, 300px);
+  scroll-snap-align: center;
+}
+.cta {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 560px) {
+  .track {
+    padding-inline: 1rem;
+  }
+}
