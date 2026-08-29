@@ -25,7 +25,7 @@ export function useScramble<T extends HTMLElement = HTMLSpanElement>(
 
     cancelAnimationFrame(raf.current);
     const chars = [...text];
-    const settleAt = chars.map((_, i) => i * 1.4 + Math.random() * 5);
+    const settleAt = chars.map((_, i) => i * 0.85 + Math.random() * 3);
     let frame = 0;
 
     const tick = () => {
@@ -33,7 +33,7 @@ export function useScramble<T extends HTMLElement = HTMLSpanElement>(
       el.textContent = chars
         .map((char, i) => {
           if (char === ' ') return ' ';
-          if (frame >= settleAt[i] + 7) return char;
+          if (frame >= settleAt[i] + 5) return char;
           done = false;
           if (frame >= settleAt[i]) return GLYPHS[Math.floor(Math.random() * GLYPHS.length)];
           return ' ';

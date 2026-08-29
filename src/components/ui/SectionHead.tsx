@@ -15,6 +15,8 @@ type Props = {
   /** Acțiune afișată în dreapta (link „vezi toate”, butoane de navigare). */
   action?: ReactNode;
   light?: boolean;
+  /** Titlu cu serif editorial, pentru secțiunile de prezentare. */
+  serif?: boolean;
 };
 
 export function SectionHead({
@@ -25,6 +27,7 @@ export function SectionHead({
   sub,
   action,
   light,
+  serif,
 }: Props) {
   return (
     <div className={cx(styles.head, action && styles.row)}>
@@ -38,7 +41,7 @@ export function SectionHead({
           id={titleId}
           text={title}
           highlight={highlight}
-          className={cx('h2', styles.title, light && styles.titleLight)}
+          className={cx('h2', styles.title, serif && 'editorial', serif && styles.serif, light && styles.titleLight)}
         />
         {sub ? (
           <Reveal as="p" className={cx('lead', styles.sub)} delay={160}>

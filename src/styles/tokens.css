@@ -51,6 +51,10 @@
 
   --font: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Poppins', 'Inter', system-ui, sans-serif;
+  /* Titluri editoriale, pentru secțiunile de prezentare. */
+  --font-editorial: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  /* Adnotări scrise de mână. */
+  --font-hand: 'Caveat', 'Segoe Script', cursive;
 }
 
 [data-theme='dark'] {

@@ -9,10 +9,11 @@ export function Gallery() {
       <div className="shell">
         <SectionHead
           eyebrow="Galerie"
+          serif
           title="Sezonul, în imagini"
           highlight="imagini"
           titleId="galerie"
-          sub="Momente de pe Base Camp Arena, de la antrenamente și din deplasări."
+          sub="Momente de la Liceul Eugen Pora, de la antrenamente și de la turnee."
         />
 
         <Reveal className={styles.grid} stagger={90}>

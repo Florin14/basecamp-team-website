@@ -83,6 +83,11 @@
   line-height: 1.6;
   flex: 1;
 }
+.channelPerson {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #93c5fd;
+}
 .channelLink {
   display: inline-flex;
   align-items: center;

@@ -9,6 +9,18 @@ export {
 } from './competitions';
 export { gallery } from './gallery';
 export {
+  budget,
+  coveragePlan,
+  kitPlacements,
+  monthlyTiers,
+  partnerBenefits,
+  partnerReach,
+  seasonTiers,
+  strategy,
+} from './partnership';
+export type { KitPlacementId } from './partnership';
+export { story } from './story';
+export {
   byCompetition,
   fixtures,
   formGuide,

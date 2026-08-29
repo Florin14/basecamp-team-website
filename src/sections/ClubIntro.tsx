@@ -16,7 +16,7 @@ const seasonMeters = [
 ];
 
 export function ClubIntro() {
-  const head = staff[0];
+  const coordinator = staff[0];
   const { matches } = useClubData();
   const tally = record(matches);
   const visualRef = useParallax<HTMLDivElement>(0.07);
@@ -35,6 +35,7 @@ export function ClubIntro() {
       <div className="shell">
         <SectionHead
           eyebrow="Despre club"
+          serif
           title="Un club de minifotbal construit pe rotație"
           highlight="minifotbal"
           titleId="despre-club"
@@ -112,15 +113,15 @@ export function ClubIntro() {
             </div>
 
             <Reveal className={styles.coach} variant="fade-left" delay={200}>
-              <img src={head.photo} alt="" width={56} height={56} />
+              <img src={coordinator.photo} alt="" width={56} height={56} />
               <div>
                 <p className={styles.coachRole}>
-                  <Trophy size={15} /> {head.role}
+                  <Trophy size={15} /> {coordinator.role}
                 </p>
-                <p className={styles.coachName}>{head.name}</p>
+                <p className={styles.coachName}>{coordinator.name}</p>
               </div>
               <Button to="/lot" variant="ghost" size="sm">
-                <Users size={16} /> Staff <ArrowRight size={15} />
+                <Users size={16} /> Lot și coordonare <ArrowRight size={15} />
               </Button>
             </Reveal>
           </div>

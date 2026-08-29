@@ -1,4 +1,4 @@
-import { club, competitions, record, useClubData } from '../data';
+import { competitions, record, squad, useClubData } from '../data';
 import { useCountUp } from '../hooks';
 import { cx, pluralWord } from '../lib/format';
 import { CompetitionCard } from '../components/cards';
@@ -7,7 +7,7 @@ import { Reveal } from '../components/ui/Reveal';
 import { SectionHead } from '../components/ui/SectionHead';
 import styles from './Competitions.module.css';
 
-const squadSize = club.highlights.find((h) => h.label === 'Jucători în lot')?.value ?? 14;
+const squadSize = squad.length;
 
 function BigStat({ value, label, suffix }: { value: number; label: string; suffix?: string }) {
   const { ref, value: shown } = useCountUp<HTMLParagraphElement>(value, 1400);
@@ -32,10 +32,10 @@ export function Competitions() {
       <div className={`shell ${styles.shell}`}>
         <SectionHead
           eyebrow="Competiții"
-          title="Patru competiții în același sezon"
-          highlight="Patru"
+          title="Trei competiții în același sezon"
+          highlight="Trei"
           titleId="competitii-title"
-          sub={`Liga Națională, Cupa României, campionatul județean și liga corporate — până la trei meciuri pe săptămână pentru un lot de ${squadSize} jucători.`}
+          sub={`Campionatul Județean AJM Cluj, Liga 1 All Time Sport și turneele naționale sub egida Federației Române de Minifotbal — patru zile de activitate pe săptămână, pentru un lot de ${squadSize} jucători.`}
         />
 
         <Reveal className={styles.summary} stagger={110}>

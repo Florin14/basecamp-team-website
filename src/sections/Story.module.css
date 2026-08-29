@@ -1,0 +1,248 @@
+.section {
+  position: relative;
+  background: var(--bg-soft);
+  border-block: 1px solid var(--brd);
+}
+.scroller {
+  position: relative;
+}
+.sticky {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.inner {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: center;
+  width: min(100% - 2.5rem, var(--shell));
+}
+
+/* ---------- Coloana de text ---------- */
+.left {
+  position: relative;
+  padding-left: 1.8rem;
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  margin-bottom: 1rem;
+}
+.dash {
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad);
+}
+.title {
+  font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.6rem);
+  color: var(--text-strong);
+  margin-bottom: 2rem;
+}
+.title em {
+  color: var(--blue-600);
+}
+
+.steps {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+}
+.step {
+  display: flex;
+  align-items: baseline;
+  gap: 0.9rem;
+  opacity: 0.32;
+  transform: translateX(-4px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+}
+.stepActive {
+  opacity: 1;
+  transform: none;
+}
+.stepYear {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--blue-600);
+  font-variant-numeric: tabular-nums;
+  min-width: 3.2rem;
+}
+.stepKicker {
+  font-family: var(--font-editorial);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text-strong);
+}
+
+/* Bara de progres verticală din stânga textului. */
+.rail {
+  position: absolute;
+  left: 0;
+  top: 0.4rem;
+  bottom: 0.4rem;
+  width: 3px;
+  border-radius: 3px;
+  background: var(--brd);
+  overflow: hidden;
+}
+.railFill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--grad);
+  transform-origin: top;
+  transition: transform 0.15s linear;
+}
+
+/* ---------- Panoul vizual ---------- */
+.right {
+  position: relative;
+}
+.stage {
+  position: relative;
+  aspect-ratio: 4 / 3.1;
+  max-height: 68svh;
+}
+.card {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--r-xl);
+  overflow: hidden;
+  box-shadow: var(--sh-lg);
+  opacity: 0;
+  transform: scale(0.94) translateY(28px) rotate(1.4deg);
+  transition: opacity 0.7s var(--ease), transform 0.9s var(--ease);
+  pointer-events: none;
+}
+.cardActive {
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+}
+.card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.year {
+  position: absolute;
+  top: 0.6rem;
+  right: 1.4rem;
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 2rem + 5vw, 6.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.05em;
+  color: #fff;
+  opacity: 0.24;
+  font-variant-numeric: tabular-nums;
+}
+.caption {
+  position: absolute;
+  left: 1rem;
+  right: 1rem;
+  bottom: 1rem;
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--r-lg);
+  box-shadow: var(--sh-md);
+  /* Peste imaginea albastră avem nevoie de o suprafață aproape opacă. */
+  background: color-mix(in srgb, var(--surface) 95%, transparent);
+  border: 1px solid var(--glass-brd);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.captionTitle {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.15rem, 1rem + 0.7vw, 1.5rem);
+  font-weight: 700;
+  color: var(--text-strong);
+  line-height: 1.2;
+  margin-bottom: 0.45rem;
+}
+.captionBody {
+  font-size: 0.92rem;
+  color: var(--text-mute);
+  line-height: 1.6;
+}
+.captionStat {
+  margin-top: 0.7rem;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--brd);
+  font-size: 0.86rem;
+  color: var(--text-mute);
+}
+.captionStat strong {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--blue-600);
+  margin-right: 0.35rem;
+}
+
+/* ---------- Pe ecrane mici renunțăm la fixare ---------- */
+@media (max-width: 900px), (prefers-reduced-motion: reduce) {
+  .scroller {
+    height: auto !important;
+  }
+  .sticky {
+    position: static;
+    height: auto;
+    padding: clamp(3.5rem, 8vw, 5rem) 0;
+  }
+  .inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .steps {
+    display: none;
+  }
+  .rail {
+    display: none;
+  }
+  .left {
+    padding-left: 0;
+  }
+  .stage {
+    position: static;
+    aspect-ratio: auto;
+    max-height: none;
+    display: grid;
+    gap: 1.4rem;
+  }
+  .card {
+    position: relative;
+    inset: auto;
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+  }
+  .card img {
+    /* Fără height:100% imaginea nu mai „mănâncă” înălțimea legendei. */
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+  .caption {
+    position: static;
+    border-radius: 0;
+    border: 0;
+    border-top: 1px solid var(--brd);
+    box-shadow: none;
+    background: var(--surface);
+  }
+  .year {
+    font-size: 3rem;
+    top: 0.2rem;
+    right: 1rem;
+  }
+}

@@ -33,6 +33,7 @@ export function SquadPreview() {
       <div className="shell">
         <SectionHead
           eyebrow="Lotul"
+          serif
           title="Șase pe teren, paisprezece în rotație"
           highlight="paisprezece"
           titleId="lot-preview"
@@ -40,7 +41,7 @@ export function SquadPreview() {
             .toString()
             .replace('.', ',')} ani.`}
           action={
-            <>
+            <span className={styles.navButtons}>
               <button
                 type="button"
                 className="round-btn"
@@ -57,7 +58,7 @@ export function SquadPreview() {
               >
                 <ChevronRight />
               </button>
-            </>
+            </span>
           }
         />
       </div>

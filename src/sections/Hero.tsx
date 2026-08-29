@@ -38,9 +38,8 @@ export function Hero() {
   const ballRef = useParallax<HTMLSpanElement>(0.16);
   const crestRef = useParallax<HTMLSpanElement>(-0.1);
   const chipRef = useParallax<HTMLSpanElement>(0.22);
-  const { ref: scrambleRef, run: rerunScramble } = useScramble<HTMLSpanElement>(club.motto, {
-    auto: true,
-  });
+  // Decodarea rulează o singură dată, la încărcare: reluarea la hover clipea urât.
+  const { ref: scrambleRef } = useScramble<HTMLSpanElement>(club.motto, { auto: true });
 
   return (
     <section className={styles.hero}>
@@ -64,8 +63,15 @@ export function Hero() {
           {next ? (
             <span ref={chipRef} className={`${styles.float} ${styles.chipWrap}`}>
               <span className={`glass ${styles.chip} floaty`}>
-                <Calendar size={16} />
-                {formatShortDate(next.kickoff)} · {formatTime(next.kickoff)}
+                <span className={styles.chipIcon}>
+                  <Calendar size={15} />
+                </span>
+                <span className={styles.chipText}>
+                  <span className={styles.chipLabel}>Următorul meci</span>
+                  <span className={styles.chipValue}>
+                    {formatShortDate(next.kickoff)} · {formatTime(next.kickoff)}
+                  </span>
+                </span>
               </span>
             </span>
           ) : null}
@@ -81,7 +87,7 @@ export function Hero() {
       <div className={`shell ${styles.inner}`}>
         <Reveal className={`glass ${styles.eyebrow}`} variant="scale">
           <span className="pulse-dot" aria-hidden />
-          Minifotbal · {competitions.length} competiții · sezonul {club.season}
+          {club.city} · {competitions.length} competiții · sezonul {club.season}
         </Reveal>
 
         <h1 className={styles.title}>
@@ -94,21 +100,16 @@ export function Hero() {
           />
         </h1>
 
-        <p
-          className={styles.sub}
-          onMouseEnter={rerunScramble}
-          onFocus={rerunScramble}
-          tabIndex={-1}
-        >
+        <p className={styles.sub}>
           <span ref={scrambleRef} className={styles.scramble}>
             {club.motto}
           </span>
         </p>
 
         <Reveal as="p" className={styles.subLine} delay={420}>
-          Din <strong>{club.city}</strong>, de pe{' '}
+          Din <strong>{club.city}</strong>, de la{' '}
           <span className={styles.mark}>{club.venue}</span> — lot, program, rezultate și
-          clasamente din toate cele patru competiții.
+          clasamente din toate competițiile.
         </Reveal>
 
         <Reveal className={styles.cta} delay={520}>

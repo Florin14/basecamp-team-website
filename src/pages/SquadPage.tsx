@@ -24,7 +24,7 @@ const filters: Filter[] = ['Toți', ...positionOrder];
 export function SquadPage() {
   useDocumentTitle(
     `Lot și staff — ${club.name}`,
-    'Lotul de jucători și staff-ul tehnic AFC Vulturii Albaștri pentru sezonul curent.',
+    'Lotul de jucători și staff-ul FC Base Camp Cluj-Napoca pentru sezonul curent.',
   );
   const [filter, setFilter] = useState<Filter>('Toți');
 
@@ -123,11 +123,12 @@ export function SquadPage() {
       <section className="section section--soft" aria-labelledby="staff">
         <div className="shell">
           <SectionHead
-            eyebrow="Staff"
-            title="Oamenii de pe margine"
-            highlight="margine"
+            eyebrow="Coordonare"
+            serif
+            title="Oamenii care țin clubul în picioare"
+            highlight="picioare"
             titleId="staff"
-            sub="Patru oameni care pregătesc echipa pentru trei meciuri pe săptămână."
+            sub="Clubul nu are antrenor angajat: echipa e coordonată de fondatorul ei, iar partea de parteneriate are un om dedicat."
           />
           <Reveal className={styles.staffGrid} stagger={90}>
             {staff.map((member) => (

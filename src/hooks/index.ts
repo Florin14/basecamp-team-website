@@ -12,6 +12,7 @@ export { useReveal } from './useReveal';
 export { useRipple } from './useRipple';
 export { useScramble } from './useScramble';
 export { useScrollProgress } from './useScrollProgress';
+export { useScrollScene } from './useScrollScene';
 export type { ScrollState } from './useScrollProgress';
 export { useSpotlight } from './useSpotlight';
 export { useTheme } from './useTheme';

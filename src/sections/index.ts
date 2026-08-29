@@ -5,6 +5,8 @@ export { Gallery } from './Gallery';
 export { Hero } from './Hero';
 export { NewsPreview } from './NewsPreview';
 export { NextMatch } from './NextMatch';
+export { Partners } from './Partners';
 export { ResultsAndStandings } from './ResultsAndStandings';
 export { SquadPreview } from './SquadPreview';
 export { Sponsors } from './Sponsors';
+export { Story } from './Story';

@@ -16,24 +16,30 @@ const channels = [
     id: 'jucatori',
     icon: Users,
     title: 'Vrei să joci la noi',
-    body: 'Antrenamente deschise în fiecare joi, de la 20:00. Peste 18 ani, cu sau fără experiență în minifotbal.',
-    email: club.contact.join,
+    body: 'Ne antrenăm și jucăm patru zile pe săptămână, la Liceul Eugen Pora. Scrie-ne dacă vrei să vii la un antrenament.',
+    person: 'Bogdan Tiut · coordonator echipă',
+    email: club.contact.email,
+    phone: club.contact.phone,
     cta: 'Scrie-ne pentru selecție',
   },
   {
     id: 'parteneri',
     icon: Trophy,
     title: 'Vrei să ne susții',
-    body: 'Pachete de sponsorizare pentru echipament, deplasări și taxe de înscriere, cu vizibilitate în toate cele patru competiții.',
-    email: club.contact.email,
-    cta: 'Cere pachetul de sponsorizare',
+    body: 'Pachete de la 500 lei/lună, cu buget public și raportare. Îți trimitem propunerea completă de colaborare.',
+    person: 'Zimbru Florin · coordonator sponsorizări',
+    email: club.contact.sponsorEmail,
+    phone: club.contact.sponsorPhone,
+    cta: 'Cere propunerea de sponsorizare',
   },
   {
     id: 'presa',
     icon: Mail,
     title: 'Scrii despre noi',
-    body: 'Acreditări, declarații, fotografii de presă și date despre club, la cerere.',
-    email: club.contact.press,
+    body: 'Rezultate, declarații și date despre club, la cerere. Ne găsești și pe Facebook, unde postăm după fiecare etapă.',
+    person: 'Bogdan Tiut · coordonator echipă',
+    email: club.contact.email,
+    phone: club.contact.phone,
     cta: 'Contact presă',
   },
 ];
@@ -77,8 +83,9 @@ export function Contact() {
             className={cx('h2', styles.title)}
           />
           <p className={styles.lead}>
-            Suntem un club de minifotbal care se autofinanțează. Ne poți scrie ca jucător, ca
-            partener sau ca jurnalist — răspundem în maximum două zile lucrătoare.
+            Suntem un club de minifotbal care se autofinanțează, susținut de contribuția
+            lunară a membrilor și de parteneri. Ne poți scrie ca jucător, ca partener sau ca
+            jurnalist.
           </p>
         </Reveal>
 
@@ -92,10 +99,13 @@ export function Contact() {
                 </span>
                 <h3 className={styles.channelTitle}>{channel.title}</h3>
                 <p className={styles.channelBody}>{channel.body}</p>
+                <p className={styles.channelPerson}>{channel.person}</p>
                 <a className={styles.channelLink} href={`mailto:${channel.email}`}>
                   {channel.cta} <ArrowRight size={15} />
                 </a>
-                <p className={styles.channelMail}>{channel.email}</p>
+                <p className={styles.channelMail}>
+                  {channel.email} · {channel.phone}
+                </p>
               </article>
             );
           })}
@@ -105,7 +115,7 @@ export function Contact() {
           <Reveal variant="fade-right" delay={80}>
             <ul className={styles.list}>
               <li>
-                <Pin size={17} /> {club.contact.address}
+                <Pin size={17} /> {club.contact.venue}
               </li>
               <li>
                 <Phone size={17} />

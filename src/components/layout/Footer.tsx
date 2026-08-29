@@ -44,7 +44,7 @@ export function Footer() {
         <div className={styles.col}>
           <h3 className={styles.colTitle}>Contact</h3>
           <p className={styles.contactLine}>
-            <Pin size={16} /> {club.contact.address}
+            <Pin size={16} /> {club.contact.venue}
           </p>
           <a className={styles.contactLine} href={`mailto:${club.contact.email}`}>
             <Mail size={16} /> {club.contact.email}
@@ -74,7 +74,7 @@ export function Footer() {
           © {year} {club.name}. Toate drepturile rezervate.
         </p>
         <p className={styles.stadium}>
-          {club.venue} · {club.venueDetail}
+          {club.fullName} · {club.venue}
         </p>
       </div>
     </footer>

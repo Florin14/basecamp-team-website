@@ -26,9 +26,44 @@
   display: flex;
   justify-content: center;
 }
+.navButtons {
+  display: flex;
+  gap: 0.6rem;
+}
+@media (max-width: 760px) {
+  .navButtons {
+    display: none;
+  }
+}
 
-@media (max-width: 560px) {
+/* Pe ecrane mici trecem la grilă: un card tăiat pe orizontală arăta prost. */
+@media (max-width: 760px) {
+  .rail {
+    overflow: visible;
+    -webkit-mask-image: none;
+    mask-image: none;
+    padding: 0.5rem 0 1.5rem;
+  }
   .track {
-    padding-inline: 1rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    padding-inline: 1.25rem;
+    width: 100%;
+  }
+  .item {
+    flex: none;
+  }
+  /* Pe mobil arătăm mai puțini jucători: restul sunt în pagina de lot. */
+  .item:nth-child(n + 5) {
+    display: none;
+  }
+}
+@media (max-width: 400px) {
+  .track {
+    grid-template-columns: 1fr;
+  }
+  .item:nth-child(n + 4) {
+    display: none;
   }
 }

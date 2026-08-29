@@ -1,0 +1,497 @@
+.section {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  padding: clamp(4rem, 9vw, 7rem) 0;
+  background: var(--bg);
+}
+.orb {
+  position: absolute;
+  width: 40vw;
+  height: 40vw;
+  left: -12vw;
+  top: -14vw;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.3), transparent 68%);
+  filter: blur(80px);
+  pointer-events: none;
+  z-index: 0;
+}
+.inner {
+  position: relative;
+  z-index: 2;
+}
+
+.head {
+  max-width: 44rem;
+  margin-bottom: clamp(2.2rem, 5vw, 3.5rem);
+}
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+  margin-bottom: 1rem;
+}
+.dash {
+  width: 26px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--grad);
+}
+.title {
+  font-size: clamp(2.1rem, 1.4rem + 2.8vw, 3.8rem);
+  color: var(--text-strong);
+  margin-bottom: 1rem;
+}
+.title em {
+  color: var(--blue-600);
+}
+.lead {
+  font-size: clamp(1.02rem, 0.98rem + 0.35vw, 1.18rem);
+  color: var(--text-mute);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: start;
+}
+
+/* ---------- Echipamentul ---------- */
+.kitWrap {
+  position: relative;
+  padding: 1.5rem;
+  border-radius: var(--r-xl);
+  background: var(--bg-soft);
+  border: 1px solid var(--brd);
+}
+.note {
+  position: absolute;
+  top: 0.4rem;
+  right: 1.6rem;
+  transform: rotate(-6deg);
+}
+.kit {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+.kitLabel {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  fill: #fff;
+  fill-opacity: 0.45;
+}
+
+.zone {
+  fill: rgba(255, 255, 255, 0.16);
+  stroke: rgba(255, 255, 255, 0.55);
+  stroke-width: 2;
+  stroke-dasharray: 6 5;
+  cursor: pointer;
+  transition: fill 0.35s var(--ease), stroke 0.35s var(--ease), transform 0.45s var(--ease);
+  transform-box: fill-box;
+  transform-origin: center;
+}
+.zone:hover {
+  fill: rgba(255, 255, 255, 0.3);
+}
+.zoneActive {
+  fill: #fff;
+  fill-opacity: 0.92;
+  stroke: #fff;
+  stroke-dasharray: none;
+  transform: scale(1.05);
+}
+
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin-top: 1.2rem;
+}
+.tab {
+  padding: 0.45rem 1rem;
+  border-radius: 99px;
+  border: 1px solid var(--brd);
+  background: var(--surface);
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--text-mute);
+  transition: 0.3s var(--ease);
+}
+.tab:hover {
+  color: var(--blue-600);
+  border-color: var(--blue-500);
+  transform: translateY(-2px);
+}
+.tabActive {
+  background: var(--grad);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: var(--sh-md);
+}
+
+/* ---------- Detaliile pachetului ---------- */
+.card {
+  width: 100%;
+  padding: 1.5rem 1.6rem;
+  border-radius: var(--r-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-brd);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  box-shadow: var(--sh-sm);
+  animation: cardIn 0.5s var(--ease);
+}
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+.tier {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-600);
+}
+.placeName {
+  font-family: var(--font-editorial);
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin: 0.2rem 0 0.6rem;
+}
+.placeBody {
+  font-size: 0.95rem;
+  color: var(--text-mute);
+  line-height: 1.65;
+}
+.perks {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--brd);
+}
+.perks li,
+.benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.55;
+}
+.perks svg,
+.benefits svg {
+  flex: none;
+  margin-top: 0.28rem;
+  color: var(--blue-500);
+}
+
+
+.benefits {
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+@media (max-width: 980px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem;
+  }
+}
+@media (max-width: 560px) {
+  .kitWrap {
+    padding: 1.1rem;
+  }
+  .note {
+    display: none;
+  }
+  .detail > :last-child {
+    width: 100%;
+  }
+}
+
+/* ---------- Pachete ---------- */
+.tiers {
+  display: grid;
+  gap: 0.9rem;
+  align-content: start;
+}
+.tiersLabel {
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-mute);
+}
+.tierCard {
+  padding: 1.2rem 1.4rem;
+  border-radius: var(--r-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-brd);
+  box-shadow: var(--sh-sm);
+  transition: transform 0.45s var(--ease), border-color 0.4s, box-shadow 0.4s;
+}
+.tierCard:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sh-md);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+.tierFeatured {
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: var(--sh-md);
+}
+.tierHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.7rem;
+}
+.tierName {
+  font-size: 1.05rem;
+}
+.tierPrice {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--blue-600);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+.tierPrice span {
+  font-family: var(--font);
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--text-mute);
+}
+.tierPerks {
+  list-style: none;
+  display: grid;
+  gap: 0.35rem;
+}
+.tierPerks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-mute);
+  line-height: 1.5;
+}
+.tierPerks svg {
+  flex: none;
+  margin-top: 0.25rem;
+  color: var(--blue-500);
+}
+.season {
+  padding: 1rem 1.3rem;
+  border-radius: var(--r);
+  border: 1px dashed var(--brd);
+}
+.seasonLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-mute);
+  margin-bottom: 0.5rem;
+}
+.seasonRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.88rem;
+  color: var(--text);
+  padding: 0.25rem 0;
+}
+.seasonRow strong {
+  color: var(--text-strong);
+  white-space: nowrap;
+}
+
+/* ---------- Buget ---------- */
+.budget {
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.6rem, 3vw, 2.4rem);
+  border-radius: var(--r-xl);
+  background: var(--bg-soft);
+  border: 1px solid var(--brd);
+}
+.budgetHead {
+  max-width: 46rem;
+  margin-bottom: 1.8rem;
+}
+.budgetTotal {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 1.5rem + 2.6vw, 3.4rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.budgetTotal span {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  font-weight: 500;
+  -webkit-text-fill-color: var(--text-mute);
+}
+.budgetSub {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  color: var(--text-mute);
+  line-height: 1.65;
+}
+.budgetList {
+  list-style: none;
+  display: grid;
+  gap: 1.1rem;
+}
+.budgetRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: baseline;
+}
+.budgetName {
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.budgetAmount {
+  font-weight: 600;
+  color: var(--blue-600);
+}
+.budgetTrack {
+  display: block;
+  height: 6px;
+  margin-top: 0.4rem;
+  border-radius: 99px;
+  background: var(--brd);
+  overflow: hidden;
+}
+.budgetTrack i {
+  display: block;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--grad);
+  transition: width 1.2s var(--ease);
+}
+.budgetItems {
+  margin-top: 0.4rem;
+  font-size: 0.82rem;
+  color: var(--text-mute);
+  line-height: 1.6;
+}
+
+/* ---------- Plan și direcție ---------- */
+.bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.6rem, 4vw, 3rem);
+  margin-top: clamp(2rem, 4vw, 3rem);
+}
+.blockTitle {
+  font-family: var(--font-editorial);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+.blockSub {
+  font-size: 0.95rem;
+  color: var(--text-mute);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+.planList {
+  list-style: none;
+  display: grid;
+  gap: 0.5rem;
+  margin-bottom: 1.2rem;
+}
+.planList li {
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.planList strong {
+  display: inline-block;
+  min-width: 2.6rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  color: var(--blue-600);
+}
+.strategyList {
+  list-style: none;
+  display: grid;
+  gap: 0.45rem;
+  margin-bottom: 1.2rem;
+}
+.strategyList li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+.strategyList li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--grad);
+}
+.closing {
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--text-strong);
+  padding-left: 1rem;
+  border-left: 3px solid var(--blue-500);
+  margin-bottom: 1.5rem;
+}
+.cta {
+  display: grid;
+  gap: 0.9rem;
+  justify-items: start;
+}
+.ctaPerson {
+  display: grid;
+  gap: 0.2rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.ctaPerson span {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 400;
+  color: var(--text-mute);
+}
+.ctaPerson svg {
+  color: var(--blue-500);
+}
+
+@media (max-width: 860px) {
+  .bottom {
+    grid-template-columns: 1fr;
+  }
+}

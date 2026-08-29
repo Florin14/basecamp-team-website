@@ -35,34 +35,68 @@
   width: auto;
 }
 
-.tiers {
+/* ---------- Locuri de partener disponibile ---------- */
+.slots {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  gap: 1.5rem;
-  margin-top: 2.2rem;
+  gap: 1.2rem;
 }
-.tier {
-  padding: 1.1rem 1.3rem;
-  border-radius: var(--r);
-  border: 1px solid var(--brd);
-  background: var(--glass-bg);
+.slot {
+  position: relative;
+  padding: 1.6rem 1.5rem 1.4rem;
+  border-style: dashed;
+  text-align: left;
+  transition: transform 0.45s var(--ease), border-color 0.4s, box-shadow 0.4s;
 }
-.tierName {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--blue-600);
-  margin-bottom: 0.4rem;
+.slot:hover {
+  transform: translateY(-5px);
+  border-color: rgba(37, 99, 235, 0.45);
+  box-shadow: var(--sh-md);
 }
-.tierList {
-  font-size: 0.92rem;
+.slotCount {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: var(--grad-text);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.slotTier {
+  margin-top: 0.35rem;
+  font-weight: 600;
+  color: var(--text-strong);
+}
+.slotPrice {
+  margin-top: 0.2rem;
+  font-size: 0.88rem;
   color: var(--text-mute);
-  line-height: 1.6;
 }
-
-@media (prefers-reduced-motion: reduce) {
-  .track {
-    animation: none;
-  }
+.slotBadge {
+  display: inline-block;
+  margin-top: 0.9rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.24rem 0.6rem;
+  border-radius: 99px;
+  background: rgba(37, 99, 235, 0.1);
+  color: var(--blue-600);
+}
+.cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.8rem;
+}
+.ctaText {
+  flex: 1 1 18rem;
+  font-family: var(--font-editorial);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--text-strong);
 }

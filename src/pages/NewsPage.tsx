@@ -13,7 +13,7 @@ type Filter = 'Toate' | NewsCategory;
 export function NewsPage() {
   useDocumentTitle(
     `Știri — ${club.name}`,
-    'Comunicate, transferuri, cronici de meci și interviuri de la AFC Vulturii Albaștri.',
+    'Comunicate, transferuri, cronici de meci și interviuri de la FC Base Camp Cluj-Napoca.',
   );
   const [filter, setFilter] = useState<Filter>('Toate');
   const filters: Filter[] = ['Toate', ...newsCategories()];

@@ -9,149 +9,126 @@ const opponent = (name: string, short: string, crestIndex: number): Team => ({
   crest: `/img/crest-${(crestIndex % 6) + 1}.svg`,
 });
 
+/**
+ * Adversarii sunt încă date demo — se înlocuiesc din Supabase, prin aplicația
+ * de scraping, fără deploy.
+ */
 export const teams = {
   us,
-  // Liga Națională — Seria C
-  craiova: opponent('United Craiova', 'UCR', 0),
-  sighisoara: opponent('Real Sighișoara', 'RSG', 1),
-  cluj: opponent('Old Boys Cluj', 'OBC', 2),
-  timisoara: opponent('Fair Play Timișoara', 'FPT', 3),
-  iasi: opponent('Team Star Iași', 'TSI', 4),
-  sibiu: opponent('Atletic Sibiu', 'ATS', 5),
-  alba: opponent('Dinamic Alba', 'DAL', 0),
-  deva: opponent('Speed Deva', 'SPD', 1),
-  mures: opponent('Nova Mureș', 'NVM', 2),
-  // Campionatul Județean Brașov
-  kronstadt: opponent('Kronstadt Minifotbal', 'KRO', 3),
-  corona: opponent('Corona Săcele', 'COR', 4),
-  tractorul: opponent('Tractorul Brașov', 'TRB', 5),
-  poiana: opponent('Poiana Team', 'POI', 0),
-  codlea: opponent('Codlea United', 'COD', 1),
-  ghimbav: opponent('Ghimbav Minifotbal', 'GHI', 2),
-  zizin: opponent('Zizin FC', 'ZIZ', 3),
-  // Liga Corporate Brașov
-  novatech: opponent('Nova Tech Team', 'NVT', 4),
-  delta: opponent('Delta Systems', 'DLT', 5),
-  kronlog: opponent('Kron Logistic', 'KRL', 0),
-  alpin: opponent('Alpin Software', 'ALP', 1),
-  rulment: opponent('Rulment Team', 'RUL', 2),
-  carpat: opponent('Carpat Media', 'CPM', 3),
-  vertigo: opponent('Vertigo Labs', 'VRT', 4),
-} as const;
+  // AJM Cluj
+  someseni: opponent('AS Someșeni', 'SOM', 0),
+  gruia: opponent('Gruia Minifotbal', 'GRU', 1),
+  manastur: opponent('Mănăștur United', 'MAN', 2),
+  floresti: opponent('Florești FC', 'FLO', 3),
+  apahida: opponent('Apahida Team', 'APA', 4),
+  marasti: opponent('Mărăști Sport', 'MAR', 5),
+  zorilor: opponent('Zorilor FC', 'ZOR', 0),
+  baciu: opponent('Baciu Minifotbal', 'BAC', 1),
+  // ATS Cluj
+  atsNapoca: opponent('Napoca All Stars', 'NAP', 2),
+  atsFerdinand: opponent('Ferdinand Team', 'FER', 3),
+  atsPolus: opponent('Polus United', 'POL', 4),
+  atsIris: opponent('Iris Sport', 'IRI', 5),
+  atsBuna: opponent('Bună Ziua FC', 'BZI', 0),
+  atsGheorgheni: opponent('Gheorgheni Team', 'GHE', 1),
+  atsDambul: opponent('Dâmbul Rotund', 'DAM', 2),
+  // Turnee naționale
+  turneuOradea: opponent('CS Oradea Mini', 'ORA', 3),
+  turneuTimis: opponent('Timiș Select', 'TIM', 4),
+};
 
 const HOME = club.venue;
 
-/** Toate meciurile sezonului, din cele patru competiții, în ordine cronologică. */
+/** Meciurile sezonului. Date demo până la conectarea sursei live. */
 export const matches: Match[] = [
   {
-    id: 'm-01', competition: 'lnm', round: 'Etapa 1',
-    kickoff: '2026-08-01T19:00:00+03:00', venue: HOME,
-    home: us, away: teams.craiova, score: { home: 5, away: 2 },
-    report: 'Start perfect în Seria C, cu trei goluri în ultimele opt minute.',
+    id: 'm-01', competition: 'ajm', round: 'Etapa 1',
+    kickoff: '2026-08-04T20:00:00+03:00', venue: HOME,
+    home: us, away: teams.someseni, score: { home: 5, away: 2 },
+    report: 'Start bun de campionat, cu trei goluri în ultimele opt minute.',
   },
   {
-    id: 'm-02', competition: 'judetean', round: 'Etapa 1',
-    kickoff: '2026-08-05T20:00:00+03:00', venue: 'Sala Sportivă Kronstadt, Brașov',
-    home: teams.kronstadt, away: us, score: { home: 3, away: 3 },
-    report: 'Derby-ul orașului s-a terminat egal, după ce am condus cu 3-1.',
-  },
-  {
-    id: 'm-03', competition: 'corporate', round: 'Etapa 1',
-    kickoff: '2026-08-08T18:30:00+03:00', venue: HOME,
-    home: us, away: teams.novatech, score: { home: 6, away: 1 },
-    report: 'Prima victorie în ediția a VIII-a a ligii corporate.',
-  },
-  {
-    id: 'm-04', competition: 'lnm', round: 'Etapa 2',
-    kickoff: '2026-08-12T19:30:00+03:00', venue: 'Arena Mureșul, Sighișoara',
-    home: teams.sighisoara, away: us, score: { home: 4, away: 2 },
-    report: 'Singura înfrângere de până acum, într-un meci decis de două contraatacuri.',
-  },
-  {
-    id: 'm-05', competition: 'judetean', round: 'Etapa 2',
-    kickoff: '2026-08-15T19:00:00+03:00', venue: HOME,
-    home: us, away: teams.corona, score: { home: 7, away: 2 },
-    report: 'Cel mai bun meci ofensiv al sezonului: patru goluri pentru Moldovan.',
-  },
-  {
-    id: 'm-06', competition: 'cupa', round: '16-imi de finală',
-    kickoff: '2026-08-19T20:00:00+03:00', venue: HOME,
-    home: us, away: teams.deva, score: { home: 4, away: 3 },
-    report: 'Calificare în optimi după un gol în ultimul minut al prelungirilor.',
-  },
-  {
-    id: 'm-07', competition: 'corporate', round: 'Etapa 2',
-    kickoff: '2026-08-22T18:00:00+03:00', venue: 'Baza Sportivă Delta, Brașov',
-    home: teams.delta, away: us, score: { home: 3, away: 3 },
+    id: 'm-02', competition: 'ats', round: 'Etapa 1',
+    kickoff: '2026-08-07T21:00:00+03:00', venue: 'Baza sportivă All Time Sport, Cluj-Napoca',
+    home: teams.atsNapoca, away: us, score: { home: 3, away: 3 },
     report: 'Egalare în ultimele secunde, cu portarul trimis în atac.',
   },
   {
-    id: 'm-08', competition: 'lnm', round: 'Etapa 3',
-    kickoff: '2026-08-26T19:00:00+03:00', venue: HOME,
-    home: us, away: teams.cluj, score: { home: 6, away: 3 },
-    report: 'A doua victorie în Liga Națională, cu debutul lui Matei Dinu.',
+    id: 'm-03', competition: 'ajm', round: 'Etapa 2',
+    kickoff: '2026-08-11T20:00:00+03:00', venue: 'Sala Gruia, Cluj-Napoca',
+    home: teams.gruia, away: us, score: { home: 2, away: 4 },
+    report: 'A doua victorie în AJM, cu o dublă a lui Nicolae Sava.',
+  },
+  {
+    id: 'm-04', competition: 'ats', round: 'Etapa 2',
+    kickoff: '2026-08-14T21:00:00+03:00', venue: HOME,
+    home: us, away: teams.atsFerdinand, score: { home: 6, away: 1 },
+    report: 'Cel mai bun meci ofensiv al verii.',
+  },
+  {
+    id: 'm-05', competition: 'frm', round: 'Turneu național · grupe',
+    kickoff: '2026-08-22T11:00:00+03:00', venue: 'Complex sportiv, Oradea',
+    home: us, away: teams.turneuOradea, score: { home: 3, away: 1 },
+    report: 'Calificare din grupă la primul turneu major al sezonului.',
+  },
+  {
+    id: 'm-06', competition: 'frm', round: 'Turneu național · sferturi',
+    kickoff: '2026-08-22T16:30:00+03:00', venue: 'Complex sportiv, Oradea',
+    home: teams.turneuTimis, away: us, score: { home: 4, away: 3 },
+    report: 'Eliminare în sferturi, după prelungiri.',
+  },
+  {
+    id: 'm-07', competition: 'ajm', round: 'Etapa 3',
+    kickoff: '2026-08-25T20:00:00+03:00', venue: HOME,
+    home: us, away: teams.manastur, score: { home: 4, away: 0 },
+    report: 'Primul meci fără gol primit din acest sezon.',
   },
 
   // ---------- Programate ----------
   {
-    id: 'm-09', competition: 'judetean', round: 'Etapa 3',
-    kickoff: '2026-09-02T20:00:00+03:00', venue: 'Sala Tractorul, Brașov',
-    home: teams.tractorul, away: us,
+    id: 'm-08', competition: 'ats', round: 'Etapa 3',
+    kickoff: '2026-09-04T21:00:00+03:00', venue: HOME,
+    home: us, away: teams.atsPolus,
   },
   {
-    id: 'm-10', competition: 'lnm', round: 'Etapa 4',
-    kickoff: '2026-09-05T19:30:00+03:00', venue: 'Arena Bega, Timișoara',
-    home: teams.timisoara, away: us,
+    id: 'm-09', competition: 'ajm', round: 'Etapa 4',
+    kickoff: '2026-09-08T20:00:00+03:00', venue: 'Sala Florești',
+    home: teams.floresti, away: us,
   },
   {
-    id: 'm-11', competition: 'corporate', round: 'Etapa 3',
-    kickoff: '2026-09-09T18:30:00+03:00', venue: HOME,
-    home: us, away: teams.kronlog,
+    id: 'm-10', competition: 'ats', round: 'Etapa 4',
+    kickoff: '2026-09-11T21:00:00+03:00', venue: 'Baza sportivă Iris, Cluj-Napoca',
+    home: teams.atsIris, away: us,
   },
   {
-    id: 'm-12', competition: 'cupa', round: 'Optimi de finală',
-    kickoff: '2026-09-13T19:00:00+03:00', venue: 'Arena Cibin, Sibiu',
-    home: teams.sibiu, away: us,
+    id: 'm-11', competition: 'ajm', round: 'Etapa 5',
+    kickoff: '2026-09-15T20:00:00+03:00', venue: HOME,
+    home: us, away: teams.apahida,
   },
   {
-    id: 'm-13', competition: 'lnm', round: 'Etapa 5',
-    kickoff: '2026-09-19T19:00:00+03:00', venue: HOME,
-    home: us, away: teams.iasi,
+    id: 'm-12', competition: 'frm', round: 'Turneu de pregătire',
+    kickoff: '2026-09-19T10:00:00+03:00', venue: 'Complex sportiv, Turda',
+    home: us, away: teams.turneuTimis,
   },
   {
-    id: 'm-14', competition: 'judetean', round: 'Etapa 4',
-    kickoff: '2026-09-23T20:00:00+03:00', venue: HOME,
-    home: us, away: teams.poiana,
+    id: 'm-13', competition: 'ats', round: 'Etapa 5',
+    kickoff: '2026-09-25T21:00:00+03:00', venue: HOME,
+    home: us, away: teams.atsBuna,
   },
   {
-    id: 'm-15', competition: 'corporate', round: 'Etapa 4',
-    kickoff: '2026-09-30T18:00:00+03:00', venue: 'Arena Alpin, Brașov',
-    home: teams.alpin, away: us,
+    id: 'm-14', competition: 'ajm', round: 'Etapa 6',
+    kickoff: '2026-09-29T20:00:00+03:00', venue: 'Sala Mărăști, Cluj-Napoca',
+    home: teams.marasti, away: us,
   },
   {
-    id: 'm-16', competition: 'lnm', round: 'Etapa 6',
-    kickoff: '2026-10-03T19:30:00+03:00', venue: 'Arena Cibin, Sibiu',
-    home: teams.sibiu, away: us,
+    id: 'm-15', competition: 'ats', round: 'Etapa 6',
+    kickoff: '2026-10-02T21:00:00+03:00', venue: 'Sala Gheorgheni, Cluj-Napoca',
+    home: teams.atsGheorgheni, away: us,
   },
   {
-    id: 'm-17', competition: 'judetean', round: 'Etapa 5',
-    kickoff: '2026-10-10T19:00:00+03:00', venue: HOME,
-    home: us, away: teams.codlea,
-  },
-  {
-    id: 'm-18', competition: 'corporate', round: 'Etapa 5',
-    kickoff: '2026-10-14T18:30:00+02:00', venue: HOME,
-    home: us, away: teams.rulment,
-  },
-  {
-    id: 'm-19', competition: 'lnm', round: 'Etapa 7',
-    kickoff: '2026-10-17T19:00:00+02:00', venue: HOME,
-    home: us, away: teams.alba,
-  },
-  {
-    id: 'm-20', competition: 'judetean', round: 'Etapa 6',
-    kickoff: '2026-10-24T20:00:00+02:00', venue: 'Sala Ghimbav',
-    home: teams.ghimbav, away: us,
+    id: 'm-16', competition: 'ajm', round: 'Etapa 7',
+    kickoff: '2026-10-06T20:00:00+03:00', venue: HOME,
+    home: us, away: teams.zorilor,
   },
 ];
 

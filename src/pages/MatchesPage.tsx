@@ -31,7 +31,7 @@ const tabs: { id: Tab; label: string }[] = [
 export function MatchesPage() {
   useDocumentTitle(
     `Meciuri și clasamente — ${club.name}`,
-    'Programul, rezultatele și clasamentele FC Base Camp din toate cele patru competiții.',
+    'Programul, rezultatele și clasamentele FC Base Camp din AJM Cluj, ATS Cluj și turneele naționale.',
   );
   const { matches, standings, source, updatedAt } = useClubData();
   const [tab, setTab] = useState<Tab>('program');

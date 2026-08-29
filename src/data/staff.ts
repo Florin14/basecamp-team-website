@@ -1,36 +1,25 @@
 import type { StaffMember } from './types';
 
+/** Clubul nu are antrenor oficial: echipa e coordonată de fondatorul ei. */
 export const staff: StaffMember[] = [
   {
     id: 'st-1',
-    name: 'Marius Dobre',
-    role: 'Antrenor principal',
-    since: '2019',
+    name: 'Bogdan Tiut',
+    role: 'Coordonator echipă',
+    since: '2017',
     photo: '/img/staff-1.svg',
-    bio: 'Fost jucător de minifotbal cu 6 sezoane în Liga Națională. Pune accent pe rotații scurte și presing pe toată suprafața terenului.',
+    bio: 'Clubul este proiectul lui. Se ocupă de tot ce ține echipa în picioare: înscrieri în competiții, program de antrenamente, logistică la turnee și relația cu federația.',
+    phone: '+40 745 831 815',
+    email: 'acsbasecamp@gmail.com',
   },
   {
     id: 'st-2',
-    name: 'Andrei Pîrvu',
-    role: 'Antrenor secund · analist',
-    since: '2022',
+    name: 'Zimbru Florin',
+    role: 'Coordonator sponsorizări',
+    since: '2017',
     photo: '/img/staff-2.svg',
-    bio: 'Se ocupă de fazele fixe și de analiza video a adversarilor din cele patru competiții.',
-  },
-  {
-    id: 'st-3',
-    name: 'Cristina Neagu',
-    role: 'Preparator fizic',
-    since: '2023',
-    photo: '/img/staff-3.svg',
-    bio: 'Gestionează încărcătura într-un sezon cu până la trei meciuri pe săptămână.',
-  },
-  {
-    id: 'st-4',
-    name: 'Radu Ionescu',
-    role: 'Manager de echipă',
-    since: '2016',
-    photo: '/img/staff-4.svg',
-    bio: 'Cofondator al clubului. Se ocupă de înscrieri în competiții, logistică și parteneriate.',
+    bio: 'Punctul de contact pentru companiile care vor să devină parteneri ai clubului.',
+    phone: '+40 742 705 935',
+    email: 'zimbru.florin.4@gmail.com',
   },
 ];

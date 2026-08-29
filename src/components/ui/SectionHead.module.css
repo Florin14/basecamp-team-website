@@ -41,6 +41,10 @@
   display: block;
   margin-bottom: 0.85rem;
 }
+.serif {
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
 .titleLight {
   color: #fff;
 }

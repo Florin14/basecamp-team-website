@@ -22,10 +22,12 @@ export type StaffMember = {
   since: string;
   photo: string;
   bio?: string;
+  phone?: string;
+  email?: string;
 };
 
 /** Competițiile în care echipa este înscrisă în sezonul curent. */
-export type CompetitionId = 'lnm' | 'cupa' | 'judetean' | 'corporate';
+export type CompetitionId = 'ajm' | 'ats' | 'frm';
 
 /** Fazele unui campionat cu play-off/play-out. */
 export type Phase = 'regular' | 'playoff' | 'playout';
@@ -41,7 +43,7 @@ export type Competition = {
   id: CompetitionId;
   name: string;
   short: string;
-  format: 'Campionat' | 'Cupă';
+  format: 'Campionat' | 'Cupă' | 'Turnee';
   scope: string;
   season: string;
   /** Competițiile eliminatorii nu au clasament. */

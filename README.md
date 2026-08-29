@@ -1,8 +1,23 @@
-# FC Base Camp — site oficial
+# FC Base Camp Cluj-Napoca — site oficial
 
-Site pentru o echipă de **minifotbal** din Brașov, înscrisă în patru competiții,
-construit ca aplicație **Vite + React + TypeScript**. Structură hibridă: o pagină
+Site pentru **FC Base Camp**, echipă de **minifotbal** din Cluj-Napoca (înființată în
+2017), construit ca aplicație **Vite + React + TypeScript**. Structură hibridă: o pagină
 principală lungă plus pagini dedicate pentru lot, meciuri și știri.
+
+## Ce este real și ce este încă demo
+
+| Real | Încă demo, de înlocuit |
+|---|---|
+| Identitatea clubului, sigla, orașul, terenul (Liceul Eugen Pora) | Lotul de jucători și statisticile lor |
+| Competițiile: AJM Cluj, Liga 1 All Time Sport, turnee FRM | Meciurile, rezultatele și clasamentele |
+| Propunerea de sponsorizare: pachete, buget, plan de acoperire, direcție 3 ani | Știrile și galeria foto |
+| Contactele: Bogdan Tiut (coordonator echipă), Zimbru Florin (sponsorizări), pagina de Facebook | — |
+
+Clubul nu are antrenor angajat: echipa este coordonată de Bogdan Tiut, fondatorul ei.
+Secțiunea de staff din `/lot` reflectă asta — nu inventa un antrenor în `src/data/staff.ts`.
+
+Meciurile și clasamentele se actualizează din Supabase, fără deploy — vezi secțiunea
+dedicată mai jos.
 
 ## Rulare
 
@@ -18,7 +33,7 @@ npm run typecheck  # doar verificarea de tipuri
 
 | Rută | Conținut |
 |---|---|
-| `/` | Landing: hero, următorul meci cu countdown, competiții, despre club, lot, rezultate + clasamente, știri, galerie, sponsori, contact |
+| `/` | Landing, în ordinea: hero → povestea clubului (scroll-driven) → următorul meci → despre club → lot → galerie → **propunerea pentru sponsori** → competiții → știri → rezultate și clasamente → sponsori → contact |
 | `/lot` | Golgheterii clubului, lotul grupat pe posturi cu filtre, staff-ul |
 | `/meciuri` | Program, rezultate și clasamente (tab-uri), filtru pe competiție, play-off/play-out |
 | `/stiri` | Toate articolele, cu filtru pe categorie |
@@ -31,10 +46,12 @@ Clubul joacă simultan în patru competiții, definite în `src/data/competition
 
 | Competiție | Format | Faze |
 |---|---|---|
-| Liga Națională de Minifotbal (Seria C) | Campionat | sezon regulat → play-off (primele 6) / play-out |
-| Cupa României la Minifotbal | Cupă | eliminatoriu, fără clasament |
-| Campionatul Județean Brașov | Campionat | sezon regulat → play-off (primele 4) / play-out |
-| Liga Corporate Brașov | Campionat | clasament unic |
+| Campionatul Județean de Minifotbal (AJM Cluj) | Campionat | sezon regulat → play-off (primele 6) / play-out |
+| Liga 1 All Time Sport (ATS Cluj) | Campionat | clasament unic |
+| Turnee naționale (sub egida FRM) | Turnee | fără clasament |
+
+> Structura fazelor pentru AJM este o presupunere — de confirmat cu regulamentul
+> competiției și ajustat în `src/data/competitions.ts`.
 
 O competiție cu mai multe faze primește automat un comutator
 **Sezon regulat / Play-off / Play-out** deasupra tabelului. Fazele care nu au încă
@@ -116,6 +133,40 @@ Conținutul este **demo** și se înlocuiește fără a atinge componentele:
 - `standings.ts` — clasamentele, pe competiție și pe fază
 - `news.ts`, `sponsors.ts`, `gallery.ts`
 - `DataProvider.tsx` — înlocuiește `matches` și `standings` cu datele din Supabase
+
+## Pagina principală: prezentare întâi, tehnic la final
+
+Homepage-ul este ordonat pentru un vizitator care nu știe nimic despre club — inclusiv
+un potențial sponsor — nu pentru un suporter care caută clasamentul. Detaliile tehnice
+(rezultate, clasamente pe faze) stau spre final; cine le caută are `/meciuri` în meniu.
+
+Două secțiuni poartă greutatea prezentării:
+
+- **`Story`** (`src/sections/Story.tsx`) — povestea clubului parcursă la scroll: panoul
+  din dreapta rămâne fixat, iar anul, imaginea și textul se schimbă pe măsură ce cobori,
+  cu o bară de progres verticală. Sub 900px sau la `prefers-reduced-motion` devine o
+  listă verticală obișnuită, fără fixare. Conținutul e în `src/data/story.ts`.
+- **`Partners`** (`src/sections/Partners.tsx`) — propunerea de colaborare, cu datele
+  reale din documentul clubului: un echipament desenat în SVG (față, secundar, șort) cu
+  zonele de sponsorizare selectabile la hover, click sau tastatură; pachetele lunare
+  (500 / 1.000 / 2.000 lei) și cele sezoniere; **bugetul anual detaliat pe categorii**,
+  cu totalul calculat automat din categorii; planul de acoperire și direcția pe trei ani.
+  Tot conținutul e în `src/data/partnership.ts`.
+- **`Sponsors`** — cât timp lista de sponsori din `src/data/sponsors.ts` este goală,
+  secțiunea afișează **locurile de partener disponibile** în loc de logo-uri inventate.
+  Când apar primii parteneri, adaugă-i în listă și secțiunea trece automat pe marquee-ul
+  cu logo-uri.
+
+## Tipografie
+
+Patru familii, fiecare cu un rol clar:
+
+| Font | Rol |
+|---|---|
+| Inter | text curent |
+| Poppins | titluri structurale, cifre, etichete |
+| **Playfair Display** | titluri editoriale, cu italic pe cuvântul accentuat — secțiunile de prezentare (`serif` pe `SectionHead`, clasa `.editorial`) |
+| **Caveat** | adnotări scrise de mână, scurte (clasa `.hand`) |
 
 ## Animații
 
