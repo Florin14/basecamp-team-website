@@ -101,6 +101,42 @@ este tratat ca programat; când primește scor, devine rezultat. `phase` accept�
 `regular`, `playoff` sau `playout`. Cheia `service_role` ocolește RLS și nu trebuie
 să ajungă niciodată în acest proiect.
 
+## Deploy pe Vercel
+
+Proiectul are `vercel.json` — Vercel citește de acolo build-ul, folderul de ieșire și
+rescrierea pentru rutele SPA. În interfață nu trebuie schimbat nimic la setările de build.
+
+| Setare | Valoare |
+|---|---|
+| Framework Preset | Vite (detectat automat) |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Install Command | `npm install` |
+| Root Directory | rădăcina repo-ului |
+
+**Variabile de mediu** (Settings → Environment Variables), aceleași pe Production,
+Preview și Development:
+
+| Nume | Valoare |
+|---|---|
+| `VITE_SUPABASE_URL` | `https://<proiect>.supabase.co` |
+| `VITE_SUPABASE_ANON_KEY` | cheia **anon**, publică |
+
+Două lucruri de reținut:
+
+- Variabilele `VITE_*` sunt înlocuite **la build**, nu citite la runtime. Dacă schimbi o
+  cheie, trebuie un redeploy ca să aibă efect.
+- Cheia anon ajunge, prin construcție, în bundle-ul trimis în browser. Este în regulă:
+  accesul e limitat de politicile RLS din `supabase/schema.sql`, care permit doar
+  citirea. Cheia `service_role` nu trebuie pusă niciodată aici — ea rămâne doar în
+  aplicația ta de scraping.
+
+Fără variabile, deploy-ul funcționează oricum: site-ul cade pe datele din `src/data/`.
+
+**Rescrierea SPA** din `vercel.json` este obligatorie. Fără ea, `/lot` sau
+`/stiri/:slug` dau 404 la acces direct sau la refresh, pentru că pe server nu există
+fișiere cu numele astea — există o singură pagină, iar rutarea se face în browser.
+
 ## Structură
 
 ```
