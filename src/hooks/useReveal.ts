@@ -8,10 +8,7 @@ type Options = {
   threshold?: number;
 };
 
-/**
- * Adaugă clasa `in` când elementul intră în viewport (o singură dată).
- * Portat din observer-ul global din v2/assets/js/main.js.
- */
+/** Adaugă clasa `in` când elementul intră în viewport (o singură dată). */
 export function useReveal<T extends HTMLElement = HTMLDivElement>({
   delay = 0,
   stagger,
