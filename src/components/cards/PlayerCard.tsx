@@ -26,10 +26,10 @@ export function PlayerCard({ player }: { player: Player }) {
         </p>
 
         <dl className={styles.stats}>
-          <div>
+          {/* <div>
             <dt>Meciuri</dt>
             <dd className="tabular">{player.stats.appearances}</dd>
-          </div>
+          </div> */}
           <div>
             <dt>Goluri</dt>
             <dd className="tabular">{player.stats.goals}</dd>

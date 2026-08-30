@@ -15,7 +15,3 @@ structură și configurarea sursei live de date.
 5. **SEO** — momentan doar `document.title` și description prin `useDocumentTitle`;
    de evaluat prerender dacă indexarea contează.
 6. **Teste** — nu există încă.
-
-## De păstrat
-
-`v2/` rămâne în proiect — varianta statică de sine stătătoare și sursa design-ului.

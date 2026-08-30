@@ -161,8 +161,24 @@ src/
   sections/     Secțiunile paginii principale
   styles/       tokens.css (design tokens) + global.css (reset, primitive, animații)
 public/img/     Imagini placeholder SVG generate
+  players/      Pozele reale ale jucătorilor (WebP) — vezi mai jos
 supabase/       schema.sql + seed.sql
 ```
+
+### Pozele jucătorilor
+
+Placeholder-ele (`/img/player-1..6.svg`) se atribuie ciclic prin helper-ul `photo(i)` din
+`src/data/squad.ts`. O poză reală se pune direct pe câmpul `photo`, fără helper:
+
+```ts
+photo: '/img/players/stefan-pop-coman.webp',
+```
+
+Formatul cerut de `PlayerCard`: raport **4 / 4.4** (`object-fit: cover`, plus un zoom de
+1,07 la hover), deci **660 × 726 px WebP la calitate ~76** — sub 70 KB și clar pe ecrane
+retina pentru un card de ~280 px. Decupajul se face pe **cap și bust**, centrat pe față;
+pozele de grup sau de vacanță trebuie tăiate, altfel jucătorul iese minuscul în card.
+Numele fișierului = numele jucătorului cu cratime, ca să nu depindă de ordinea din listă.
 
 ## Date
 
@@ -217,8 +233,7 @@ Patru familii, fiecare cu un rol clar:
 
 ## Animații
 
-Design-ul albastru/glass este portat din varianta statică din `v2/` (păstrată ca
-referință), cu un strat de mișcare peste: ecran de întâmpinare cu siglă desenată,
+Peste design-ul albastru/glass stă un strat de mișcare: ecran de întâmpinare cu siglă desenată,
 tranziții între pagini, titluri care se ridică literă cu literă, gradient animat,
 text „scramble", tilt 3D și sheen pe carduri, ripple pe butoane, parallax pe decor,
 countdown cu cifre care alunecă, scoruri care urcă de la zero, clasamente în cascadă
