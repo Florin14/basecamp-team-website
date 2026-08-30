@@ -8,8 +8,8 @@
   position: relative;
 }
 .frame {
-  will-change: transform;
   position: relative;
+  will-change: transform;
   border-radius: var(--r-xl);
   overflow: hidden;
   box-shadow: var(--sh-lg);

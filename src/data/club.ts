@@ -21,7 +21,7 @@ export const club = {
   weeklyDays: 4,
   description:
     'Echipă competitivă de minifotbal din Cluj-Napoca, activă în Campionatul Județean ' +
-    'AJM Cluj, în Liga 1 All Time Sport și la turneele naționale organizate sub egida ' +
+    'AJM Cluj, Friends4Football în Liga 1 All Time Sport și la turneele naționale organizate sub egida ' +
     'Federației Române de Minifotbal. Patru zile pe săptămână de antrenamente și jocuri ' +
     'competitive, coordonate de jucătorii înșiși.',
   contact: {
@@ -50,7 +50,9 @@ export const club = {
 
 export const navLinks = [
   { to: '/', label: 'Acasă' },
+  { to: '/club', label: 'Club' },
   { to: '/lot', label: 'Lot' },
   { to: '/meciuri', label: 'Meciuri' },
   { to: '/stiri', label: 'Știri' },
+  { to: '/sponsorizare', label: 'Sponsorizare' },
 ] as const;

@@ -17,13 +17,13 @@
   top: -10vw;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(147, 197, 253, 0.35), transparent 68%);
-  filter: blur(70px);
+  filter: blur(56px);
   pointer-events: none;
   animation: orbDrift 26s var(--ease-io) infinite alternate;
 }
 @keyframes orbDrift {
   to {
-    transform: translate3d(-6vw, 5vh, 0) scale(1.2);
+    transform: translate3d(-6vw, 5vh, 0);
   }
 }
 
@@ -255,4 +255,20 @@
   .bottom {
     grid-template-columns: 1fr;
   }
+}
+
+/* Trimitere către pagina de sponsorizare, din canalul pentru parteneri. */
+.channelPage {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.35rem;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--blue-200);
+  transition: gap 0.3s var(--ease), color 0.3s;
+}
+.channelPage:hover {
+  gap: 0.7rem;
+  color: #fff;
 }

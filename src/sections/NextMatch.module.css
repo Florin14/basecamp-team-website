@@ -48,7 +48,7 @@
 }
 @keyframes orbDrift {
   to {
-    transform: translate3d(5vw, 4vh, 0) scale(1.18);
+    transform: translate3d(5vw, 4vh, 0);
   }
 }
 

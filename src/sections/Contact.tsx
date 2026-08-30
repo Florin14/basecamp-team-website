@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { FormEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { club } from '../data';
 import { cx } from '../lib/format';
 import { Button } from '../components/ui/Button';
@@ -10,8 +11,21 @@ import styles from './Contact.module.css';
 
 type Status = { kind: 'idle' | 'ok' | 'error'; message: string };
 
+type Channel = {
+  id: string;
+  icon: typeof Users;
+  title: string;
+  body: string;
+  person: string;
+  email: string;
+  phone: string;
+  cta: string;
+  /** Pagină dedicată, dacă subiectul are una. */
+  page?: { to: string; label: string };
+};
+
 /** Cele trei motive pentru care cineva ne scrie. */
-const channels = [
+const channels: Channel[] = [
   {
     id: 'jucatori',
     icon: Users,
@@ -31,6 +45,7 @@ const channels = [
     email: club.contact.sponsorEmail,
     phone: club.contact.sponsorPhone,
     cta: 'Cere propunerea de sponsorizare',
+    page: { to: '/sponsorizare', label: 'Vezi propunerea completă' },
   },
   {
     id: 'presa',
@@ -103,6 +118,11 @@ export function Contact() {
                 <a className={styles.channelLink} href={`mailto:${channel.email}`}>
                   {channel.cta} <ArrowRight size={15} />
                 </a>
+                {channel.page ? (
+                  <Link className={styles.channelPage} to={channel.page.to}>
+                    {channel.page.label} <ArrowRight size={14} />
+                  </Link>
+                ) : null}
                 <p className={styles.channelMail}>
                   {channel.email} · {channel.phone}
                 </p>

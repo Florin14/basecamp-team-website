@@ -13,7 +13,7 @@
   top: -14vw;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(96, 165, 250, 0.3), transparent 68%);
-  filter: blur(80px);
+  filter: blur(60px);
   pointer-events: none;
   z-index: 0;
 }

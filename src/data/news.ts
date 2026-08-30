@@ -5,7 +5,7 @@ export const news: Article[] = [
     slug: 'trei-competitii-in-sezonul-2026-2027',
     title: 'FC Base Camp joacă în trei competiții în sezonul 2026/2027',
     excerpt:
-      'Campionatul Județean AJM Cluj, Liga 1 All Time Sport și turneele naționale FRM — patru zile de activitate pe săptămână.',
+      'Campionatul Județean AJM Cluj, Liga 1 All Time Sport, Friends4Football și turneele naționale FRM — patru zile de activitate pe săptămână.',
     category: 'Competiții',
     date: '2026-08-28',
     author: 'Departamentul de comunicare',
@@ -71,14 +71,14 @@ export const news: Article[] = [
     slug: 'amadou-diallo-si-matei-dinu-transferuri',
     title: 'Amadou Diallo și Matei Dinu, transferurile verii',
     excerpt:
-      'Un universal cu experiență în futsal și un tânăr de 22 de ani crescut la Cluj.',
+      'Un mijlocas cu experiență în futsal și un tânăr de 22 de ani crescut la Cluj.',
     category: 'Transferuri',
     date: '2026-07-30',
     author: 'Departamentul de comunicare',
     readingMinutes: 3,
     image: '/img/news-5.svg',
     body: [
-      'FC Base Camp a înregistrat două transferuri înaintea noului sezon: Amadou Diallo (27 de ani, universal) și Matei Dinu (22 de ani, universal).',
+      'FC Base Camp a înregistrat două transferuri înaintea noului sezon: Amadou Diallo (27 de ani, mijlocas) și Matei Dinu (22 de ani, mijlocas).',
       'Diallo a jucat patru sezoane în campionate regionale de futsal din Franța și aduce echipei un profil fizic care lipsea la mijlocul terenului.',
       'Dinu vine de la o echipă din campionatul județean clujean și este primul jucător sub 23 de ani din lotul principal din 2023 încoace.',
     ],

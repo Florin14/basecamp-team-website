@@ -8,6 +8,20 @@ const us = club.name;
 export type StandingsMap = Partial<Record<CompetitionId, Partial<Record<Phase, StandingRow[]>>>>;
 
 export const standings: StandingsMap = {
+  f4f: {
+    regular: [
+      { position: 1, team: 'AS Someșeni', short: 'SOM', played: 3, won: 3, drawn: 0, lost: 0, goalsFor: 14, goalsAgainst: 6, points: 9, form: ['V', 'V', 'V'] },
+      { position: 2, team: us, short: 'BSC', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 13, goalsAgainst: 9, points: 6, form: ['V', 'Î', 'V'] },
+      { position: 3, team: 'Gruia Minifotbal', short: 'GRU', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 11, goalsAgainst: 8, points: 6, form: ['Î', 'V', 'V'] },
+      { position: 4, team: 'Mănăștur United', short: 'MAN', played: 3, won: 1, drawn: 2, lost: 0, goalsFor: 9, goalsAgainst: 7, points: 5, form: ['E', 'V', 'E'] },
+      { position: 5, team: 'Florești FC', short: 'FLO', played: 3, won: 1, drawn: 1, lost: 1, goalsFor: 10, goalsAgainst: 10, points: 4, form: ['V', 'E', 'Î'] },
+      { position: 6, team: 'Apahida Team', short: 'APA', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 9, goalsAgainst: 12, points: 3, form: ['V', 'Î', 'Î'] },
+      { position: 7, team: 'Mărăști Sport', short: 'MAR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 7, goalsAgainst: 10, points: 3, form: ['Î', 'V', 'Î'] },
+      { position: 8, team: 'Zorilor FC', short: 'ZOR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 8, goalsAgainst: 12, points: 3, form: ['Î', 'V', 'Î'] },
+      { position: 9, team: 'Baciu Minifotbal', short: 'BAC', played: 3, won: 0, drawn: 2, lost: 1, goalsFor: 6, goalsAgainst: 8, points: 2, form: ['E', 'Î', 'E'] },
+      { position: 10, team: 'Someș Sport', short: 'SMS', played: 3, won: 0, drawn: 1, lost: 2, goalsFor: 5, goalsAgainst: 10, points: 1, form: ['E', 'Î', 'Î'] },
+    ],
+  },
   ajm: {
     regular: [
       { position: 1, team: 'AS Someșeni', short: 'SOM', played: 3, won: 3, drawn: 0, lost: 0, goalsFor: 14, goalsAgainst: 6, points: 9, form: ['V', 'V', 'V'] },

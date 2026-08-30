@@ -616,11 +616,13 @@ h4 {
   overflow: hidden;
   pointer-events: none;
   z-index: 0;
+  /* Izolează fundalul: nu mai poate declanșa recalcule în restul paginii. */
+  contain: layout paint style;
 }
 .mesh__blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
+  filter: blur(64px);
   opacity: 0.55;
   will-change: transform;
 }
@@ -652,47 +654,55 @@ h4 {
 }
 .mesh--soft .mesh__blob {
   opacity: 0.2;
-  filter: blur(110px);
+  filter: blur(72px);
 }
 [data-theme='dark'] .mesh__blob {
   opacity: 0.3;
-  filter: blur(100px);
+  filter: blur(68px);
 }
 [data-theme='dark'] .mesh--soft .mesh__blob {
   opacity: 0.16;
 }
+/* Doar translate: e o operație pură de compozitare, fără re-rasterizarea
+   suprafeței blurate la fiecare cadru (spre deosebire de scale). */
 @keyframes drift1 {
   0% {
-    transform: translate3d(0, 0, 0) scale(1);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(6vw, 5vh, 0) scale(1.16);
+    transform: translate3d(6vw, 5vh, 0);
   }
   100% {
-    transform: translate3d(-3vw, 9vh, 0) scale(0.94);
+    transform: translate3d(-3vw, 9vh, 0);
   }
 }
 @keyframes drift2 {
   0% {
-    transform: translate3d(0, 0, 0) scale(1.05);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(-7vw, 7vh, 0) scale(0.9);
+    transform: translate3d(-7vw, 7vh, 0);
   }
   100% {
-    transform: translate3d(4vw, -4vh, 0) scale(1.2);
+    transform: translate3d(4vw, -4vh, 0);
   }
 }
 @keyframes drift3 {
   0% {
-    transform: translate3d(0, 0, 0) scale(0.95);
+    transform: translate3d(0, 0, 0);
   }
   50% {
-    transform: translate3d(8vw, -6vh, 0) scale(1.18);
+    transform: translate3d(8vw, -6vh, 0);
   }
   100% {
-    transform: translate3d(-6vw, 3vh, 0) scale(1);
+    transform: translate3d(-6vw, 3vh, 0);
   }
+}
+
+/* Secțiune ieșită de pe ecran: nu mai plătim nimic pentru fundalul ei. */
+.mesh--idle .mesh__blob {
+  animation-play-state: paused;
+  will-change: auto;
 }
 .grid-lines {
   position: absolute;
@@ -709,7 +719,10 @@ h4 {
 
 @media (max-width: 640px) {
   .mesh__blob {
-    filter: blur(56px);
+    filter: blur(44px);
+  }
+  .mesh__blob--2 {
+    animation: none;
   }
   .mesh__blob--3 {
     display: none;
@@ -751,4 +764,9 @@ h4 {
     color: #000;
     background: #fff;
   }
+}
+
+/* Spațiul ținut cât timp se încarcă chunk-ul unei pagini secundare. */
+.route-fallback {
+  min-height: 70svh;
 }

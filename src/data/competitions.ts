@@ -10,6 +10,24 @@ const playout = (note: string): PhaseInfo => ({ id: 'playout', label: 'Play-out'
  */
 export const competitions: Competition[] = [
   {
+    id: 'f4f',
+    name: 'Friends4Football',
+    short: 'F4F Cluj',
+    format: 'Campionat',
+    scope: 'Friends4Football, Cluj-Napoca',
+    season: '2026',
+    hasStandings: true,
+    playoffCut: 7,
+    relegationCount: 1,
+    phases: [
+      regular('Sezon regulat, doar tur, cu toate echipele înscrise.'),
+      playoff('Primele 7 din sezonul regulat se bat pentru titlu.'),
+      playout('Restul echipelor, pentru calificarea in play-off-ul care da echipa de pe locul 3 in clasamentul final.'),
+    ],
+    goal: 'Play-off și lupta pentru titlu',
+    accent: '#2563EB',
+  },
+  {
     id: 'ajm',
     name: 'Campionatul Județean de Minifotbal',
     short: 'AJM Cluj',
@@ -48,7 +66,7 @@ export const competitions: Competition[] = [
     season: '2026/2027',
     hasStandings: false,
     phases: [],
-    goal: '4–5 turnee majore pe an, plus turnee de pregătire',
+    goal: '1-2 turnee majore pe an, plus turnee de pregătire',
     accent: '#7C3AED',
   },
 ];
