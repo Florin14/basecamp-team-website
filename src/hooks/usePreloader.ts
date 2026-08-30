@@ -1,48 +1,67 @@
 import { useEffect, useState } from 'react';
 import { useReducedMotion } from './useMediaQuery';
 
+const SEEN_KEY = 'bc:preloader-seen';
+
+/** Ecranul de întâmpinare a fost deja afișat în sesiunea curentă? */
+function alreadySeen() {
+  try {
+    return sessionStorage.getItem(SEEN_KEY) === '1';
+  } catch {
+    // Modul privat poate bloca sessionStorage — atunci îl arătăm normal.
+    return false;
+  }
+}
+
 /**
- * Progresul ecranului de întâmpinare. Urcă animat până la 90% și se
- * completează când pagina a terminat de încărcat.
+ * Progresul ecranului de întâmpinare. Apare o singură dată pe sesiune și
+ * dispare imediat ce aplicația a randat primul cadru — nu așteaptă
+ * fonturile sau imaginile, ca să nu întârzie inutil prima interacțiune.
  */
-export function usePreloader(minDuration = 900) {
+export function usePreloader(fadeMs = 260) {
   const reduced = useReducedMotion();
-  const [progress, setProgress] = useState(reduced ? 100 : 8);
-  const [done, setDone] = useState(reduced);
+  const [skip] = useState(() => reduced || alreadySeen());
+  const [progress, setProgress] = useState(skip ? 100 : 12);
+  const [done, setDone] = useState(skip);
+  // După fade scoatem stratul din DOM, ca să nu rămână un layer fix inutil.
+  const [gone, setGone] = useState(skip);
 
   useEffect(() => {
-    if (reduced) return;
-    const started = performance.now();
+    if (skip) return;
 
-    const tick = setInterval(() => {
-      setProgress((p) => (p >= 90 ? p : p + Math.random() * 14));
-    }, 110);
+    try {
+      sessionStorage.setItem(SEEN_KEY, '1');
+    } catch {
+      // Fără sessionStorage doar reapare la următoarea navigare completă.
+    }
 
-    const finish = () => {
-      clearInterval(tick);
-      const wait = Math.max(0, minDuration - (performance.now() - started));
-      setTimeout(() => {
+    const timers: number[] = [];
+    let raf = 0;
+
+    // Două cadre: primul confirmă montarea, al doilea că s-a și pictat.
+    raf = requestAnimationFrame(() => {
+      raf = requestAnimationFrame(() => {
+        raf = 0;
         setProgress(100);
-        setTimeout(() => setDone(true), 520);
-      }, wait);
-    };
-
-    if (document.readyState === 'complete') finish();
-    else window.addEventListener('load', finish, { once: true });
+        timers.push(window.setTimeout(() => setDone(true), fadeMs));
+        timers.push(window.setTimeout(() => setGone(true), fadeMs + 320));
+      });
+    });
 
     return () => {
-      clearInterval(tick);
-      window.removeEventListener('load', finish);
+      if (raf) cancelAnimationFrame(raf);
+      timers.forEach((id) => window.clearTimeout(id));
     };
-  }, [minDuration, reduced]);
+  }, [skip, fadeMs]);
 
   // Blochează scroll-ul cât timp ecranul de întâmpinare este vizibil.
   useEffect(() => {
-    document.body.style.overflow = done ? '' : 'hidden';
+    if (done) return;
+    document.body.style.overflow = 'hidden';
     return () => {
       document.body.style.overflow = '';
     };
   }, [done]);
 
-  return { progress: Math.min(progress, 100), done };
+  return { progress: Math.min(progress, 100), done, gone };
 }

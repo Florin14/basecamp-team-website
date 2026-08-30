@@ -57,9 +57,9 @@ export function Partners() {
             <span className={styles.dash} aria-hidden />
             Propunere de colaborare
           </p>
-          <h2 id="parteneri-title" className={cx('editorial', styles.title)}>
+          <h1 id="parteneri-title" className={cx('editorial', styles.title)}>
             Un club construit <em>cu buget public</em>
-          </h2>
+          </h1>
           <p className={styles.lead}>
             FC Base Camp nu este doar o echipă de competiție, ci un proiect organizat, cu
             obiective clare și structură financiară transparentă. Mai jos e tot: unde se duc

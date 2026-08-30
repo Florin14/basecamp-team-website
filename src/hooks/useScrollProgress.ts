@@ -27,14 +27,25 @@ export function useScrollProgress(navLocked = false): ScrollState {
     const read = () => {
       const y = window.scrollY;
       const max = document.documentElement.scrollHeight - window.innerHeight;
-      setState({
-        progress: max > 0 ? (y / max) * 100 : 0,
+      // Rotunjim progresul la 0,5% — bara de scroll arată la fel, dar
+      // scăpăm de un re-render al antetului la fiecare cadru.
+      const progress = max > 0 ? Math.round((y / max) * 200) / 2 : 0;
+      const next: ScrollState = {
+        progress,
         stuck: y > 20,
         hidden: y > lastY && y > 420 && !navLocked,
         pastHero: y > window.innerHeight * 0.7,
-      });
+      };
       lastY = y;
       ticking = false;
+      setState((current) =>
+        current.progress === next.progress &&
+        current.stuck === next.stuck &&
+        current.hidden === next.hidden &&
+        current.pastHero === next.pastHero
+          ? current
+          : next,
+      );
     };
 
     const onScroll = () => {

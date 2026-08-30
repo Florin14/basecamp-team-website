@@ -2,14 +2,14 @@
 
 Site pentru **FC Base Camp**, echipă de **minifotbal** din Cluj-Napoca (înființată în
 2017), construit ca aplicație **Vite + React + TypeScript**. Structură hibridă: o pagină
-principală lungă plus pagini dedicate pentru lot, meciuri și știri.
+principală plus pagini dedicate pentru club, lot, meciuri, știri și sponsorizare.
 
 ## Ce este real și ce este încă demo
 
 | Real | Încă demo, de înlocuit |
 |---|---|
 | Identitatea clubului, sigla, orașul, terenul (Liceul Eugen Pora) | Lotul de jucători și statisticile lor |
-| Competițiile: AJM Cluj, Liga 1 All Time Sport, turnee FRM | Meciurile, rezultatele și clasamentele |
+| Competițiile: AJM Cluj, Liga 1 All Time Sport, Friends4Football turnee FRM | Meciurile, rezultatele și clasamentele |
 | Propunerea de sponsorizare: pachete, buget, plan de acoperire, direcție 3 ani | Știrile și galeria foto |
 | Contactele: Bogdan Tiut (coordonator echipă), Zimbru Florin (sponsorizări), pagina de Facebook | — |
 
@@ -33,12 +33,17 @@ npm run typecheck  # doar verificarea de tipuri
 
 | Rută | Conținut |
 |---|---|
-| `/` | Landing, în ordinea: hero → povestea clubului (scroll-driven) → următorul meci → despre club → lot → galerie → **propunerea pentru sponsori** → competiții → știri → rezultate și clasamente → sponsori → contact |
+| `/` | Landing, în ordinea: hero → următorul meci → despre club → lot → galerie → competiții → știri → rezultate și clasamente → contact |
+| `/club` | Povestea clubului, parcursă la scroll (secțiunea `Story`) |
 | `/lot` | Golgheterii clubului, lotul grupat pe posturi cu filtre, staff-ul |
 | `/meciuri` | Program, rezultate și clasamente (tab-uri), filtru pe competiție, play-off/play-out |
 | `/stiri` | Toate articolele, cu filtru pe categorie |
 | `/stiri/:slug` | Articol individual + articole conexe |
+| `/sponsorizare` | Propunerea pentru parteneri (`Partners`) + sponsorii actuali (`Sponsors`) |
 | orice altceva | Pagina 404 |
+
+Doar `/` intră în bundle-ul inițial; restul rutelor se încarcă la cerere
+(`React.lazy` în `src/App.tsx`, cu `Suspense` în `Layout`).
 
 ## Competiții și faze
 
@@ -48,6 +53,7 @@ Clubul joacă simultan în patru competiții, definite în `src/data/competition
 |---|---|---|
 | Campionatul Județean de Minifotbal (AJM Cluj) | Campionat | sezon regulat → play-off (primele 6) / play-out |
 | Liga 1 All Time Sport (ATS Cluj) | Campionat | clasament unic |
+| Friends4Football | Campionat | sezon regulat → play-off (primele 7) / play-out |
 | Turnee naționale (sub egida FRM) | Turnee | fără clasament |
 
 > Structura fazelor pentru AJM este o presupunere — de confirmat cu regulamentul
@@ -176,6 +182,11 @@ Homepage-ul este ordonat pentru un vizitator care nu știe nimic despre club —
 un potențial sponsor — nu pentru un suporter care caută clasamentul. Detaliile tehnice
 (rezultate, clasamente pe faze) stau spre final; cine le caută are `/meciuri` în meniu.
 
+Cele două blocuri lungi — povestea clubului (400vh de scroll) și propunerea pentru
+parteneri — au pagini proprii (`/club`, `/sponsorizare`), accesibile din meniu. Landing-ul
+rămâne astfel de ~9 secțiuni, iar sponsorii ajung direct pe pagina care îi privește
+(link și din canalul „Vrei să ne susții" al secțiunii Contact).
+
 Două secțiuni poartă greutatea prezentării:
 
 - **`Story`** (`src/sections/Story.tsx`) — povestea clubului parcursă la scroll: panoul
@@ -215,6 +226,27 @@ cu bare de puncte.
 
 Toate se opresc la `prefers-reduced-motion: reduce`; efectele care depind de cursor
 (tilt, magnetic, cursor personalizat) se activează doar pe pointer fin.
+
+### Reguli de performanță pentru decor
+
+Fundalurile difuze (`.mesh__blob`, `.orb` din `NextMatch`/`Contact`/`Partners`) sunt
+suprafețe uriașe cu `filter: blur(...)`. Ca să nu blocheze scroll-ul:
+
+- **Nu anima `scale` pe ele.** Scale forțează re-rasterizarea suprafeței blurate la
+  fiecare cadru; `translate3d` singur e o operație pură de compozitare. Keyframe-urile
+  `drift1/2/3` și `orbDrift` sunt intenționat doar din translate.
+- **`MeshBackground` oprește animația off-screen** (IntersectionObserver → clasa
+  `.mesh--idle` cu `animation-play-state: paused`). Orice fundal animat nou ar trebui
+  să facă la fel.
+- **`will-change: transform` doar pe elemente puține și chiar animate** (parallax-ul din
+  `Hero`/`ClubIntro`, blob-urile vizibile). Pe carduri care se repetă de N ori promova
+  fiecare card într-un layer GPU separat, degeaba.
+- **Hook-urile de scroll cuantifică progresul** (`useScrollProgress`, `useScrollScene`
+  rotunjesc la 0,5%), ca să nu declanșeze un re-render React la fiecare cadru.
+
+Ecranul de întâmpinare apare **o singură dată pe sesiune** (`sessionStorage`) și dispare
+după primul cadru randat — nu așteaptă fonturile sau imaginile. Fonturile Google se
+încarcă neblocant (`media="print"` + `onload`), ca să nu întârzie primul render.
 
 ## Accesibilitate
 

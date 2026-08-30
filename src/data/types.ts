@@ -1,4 +1,4 @@
-export type Position = 'Portar' | 'Fundaș' | 'Universal' | 'Atacant';
+export type Position = 'Portar' | 'Fundaș' | 'Mijlocas' | 'Atacant';
 
 export type Player = {
   id: string;
@@ -27,7 +27,7 @@ export type StaffMember = {
 };
 
 /** Competițiile în care echipa este înscrisă în sezonul curent. */
-export type CompetitionId = 'ajm' | 'ats' | 'frm';
+export type CompetitionId = 'f4f' | 'ajm' | 'ats' | 'frm';
 
 /** Fazele unui campionat cu play-off/play-out. */
 export type Phase = 'regular' | 'playoff' | 'playout';

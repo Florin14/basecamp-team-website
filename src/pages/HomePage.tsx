@@ -8,11 +8,8 @@ import {
   Hero,
   NewsPreview,
   NextMatch,
-  Partners,
   ResultsAndStandings,
   SquadPreview,
-  Sponsors,
-  Story,
 } from '../sections';
 
 export function HomePage() {
@@ -21,19 +18,13 @@ export function HomePage() {
   return (
     <>
       <Hero />
-      {/* Întâi povestea și prezentarea clubului... */}
-      <Story />
       <NextMatch />
       <ClubIntro />
       <SquadPreview />
       <Gallery />
-      {/* ...apoi propunerea pentru parteneri... */}
-      <Partners />
       <Competitions />
       <NewsPreview />
-      {/* ...și abia la final detaliile tehnice. */}
       <ResultsAndStandings />
-      <Sponsors />
       <Contact />
     </>
   );

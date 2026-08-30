@@ -33,7 +33,9 @@ export function useScrollScene<T extends HTMLElement = HTMLDivElement>(steps: nu
       const rect = el.getBoundingClientRect();
       const scrollable = rect.height - window.innerHeight;
       const raw = scrollable > 0 ? -rect.top / scrollable : 0;
-      const progress = Math.min(Math.max(raw, 0), 1);
+      // Cuantificat la 0,5%: destul pentru bara de progres, dar taie
+      // majoritatea re-randărilor secțiunii în timpul scroll-ului.
+      const progress = Math.round(Math.min(Math.max(raw, 0), 1) * 200) / 200;
       // Ultimul pas rămâne activ până la finalul secțiunii.
       const step = Math.min(steps - 1, Math.floor(progress * steps));
       setScene((current) =>

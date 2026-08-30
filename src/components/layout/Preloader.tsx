@@ -3,9 +3,11 @@ import { usePreloader } from '../../hooks';
 import { cx } from '../../lib/format';
 import styles from './Preloader.module.css';
 
-/** Ecran de întâmpinare: sigla se desenează, bara umple, apoi dispare. */
+/** Ecran de întâmpinare scurt: apare o singură dată pe sesiune, apoi se scoate din DOM. */
 export function Preloader() {
-  const { progress, done } = usePreloader();
+  const { progress, done, gone } = usePreloader();
+
+  if (gone) return null;
 
   return (
     <div className={cx(styles.wrap, done && styles.done)} aria-hidden={done}>
@@ -33,7 +35,6 @@ export function Preloader() {
         <div className={styles.bar}>
           <span style={{ width: `${progress}%` }} />
         </div>
-        <p className={styles.label}>Se încarcă · {Math.round(progress)}%</p>
       </div>
     </div>
   );

@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { Suspense, useEffect } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 import { BackToTop } from './BackToTop';
 import { Cursor } from './Cursor';
@@ -43,7 +43,10 @@ export function Layout() {
       <Nav />
       <main id="main">
         <PageTransition>
-          <Outlet />
+          {/* Paginile secundare se încarcă la cerere (vezi App.tsx). */}
+          <Suspense fallback={<div className="route-fallback" aria-busy="true" />}>
+            <Outlet />
+          </Suspense>
         </PageTransition>
       </main>
       <Footer />

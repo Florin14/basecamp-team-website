@@ -24,9 +24,9 @@ export function Story() {
                 <span className={styles.dash} aria-hidden />
                 Povestea clubului
               </p>
-              <h2 id="poveste" className={cx('editorial', styles.title)}>
+              <h1 id="poveste" className={cx('editorial', styles.title)}>
                 De la opt oameni <em>la patru competiții</em>
-              </h2>
+              </h1>
 
               <ol className={styles.steps}>
                 {story.map((item, i) => (

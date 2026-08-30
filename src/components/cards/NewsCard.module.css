@@ -10,7 +10,6 @@
   box-shadow: var(--sh-sm);
   transition: box-shadow 0.5s var(--ease), border-color 0.4s;
   height: 100%;
-  will-change: transform;
 }
 .card:hover {
   box-shadow: var(--sh-lg);
