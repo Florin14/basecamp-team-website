@@ -1,6 +1,7 @@
 /**
  * Datele clubului. Identitatea, contactele și competițiile sunt reale;
- * loturile, meciurile și clasamentele sunt încă date demo.
+ * datele AJM sunt din afișul oficial al etapei 1, iar rezultatele, programul
+ * și clasamentul ATS sunt preluate din capturile campionatului.
  */
 export const club = {
   name: 'FC Base Camp',
@@ -18,11 +19,11 @@ export const club = {
   motto: 'Minifotbal la Cluj, din 2017',
   colors: ['Albastru', 'Alb'],
   /** Ritmul săptămânal de activitate. */
-  weeklyDays: 4,
+  weeklyDays: 3,
   description:
     'Echipă competitivă de minifotbal din Cluj-Napoca, activă în Campionatul Județean ' +
-    'AJM Cluj, Friends4Football în Liga 1 All Time Sport și la turneele naționale organizate sub egida ' +
-    'Federației Române de Minifotbal. Patru zile pe săptămână de antrenamente și jocuri ' +
+    'AJM Cluj în Liga 1 All Time Sport și la turneele naționale organizate sub egida ' +
+    'Federației Române de Minifotbal. Trei zile pe săptămână de antrenamente și jocuri ' +
     'competitive, coordonate de jucătorii înșiși.',
   contact: {
     email: 'acsbasecamp@gmail.com',
@@ -42,8 +43,8 @@ export const club = {
   ],
   highlights: [
     { label: 'Ani de activitate', value: new Date().getFullYear() - 2017 },
-    { label: 'Competiții în sezon', value: 3 },
-    { label: 'Zile de activitate / săpt.', value: 4 },
+    { label: 'Competiții în sezon', value: 2 },
+    { label: 'Zile de activitate / săpt.', value: 3 },
     { label: 'Turnee naționale / an', value: 5 },
   ],
 } as const;

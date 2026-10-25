@@ -27,6 +27,41 @@
   box-shadow: var(--sh-md);
 }
 
+.scope {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  padding: 0.3rem;
+  border: 1px solid var(--brd);
+  border-radius: var(--r);
+  background: var(--glass-bg);
+}
+.scopeButton {
+  padding: 0.6rem 1rem;
+  border-radius: calc(var(--r) - 4px);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-mute);
+  transition: background 0.3s, color 0.3s;
+}
+.scopeButton:hover {
+  color: var(--blue-600);
+}
+.scopeActive {
+  background: var(--grad);
+  color: #fff;
+}
+.scopeActive:hover {
+  color: #fff;
+}
+.scopeNote {
+  margin: 0.75rem 0 1.25rem;
+  font-size: 0.86rem;
+  color: var(--text-mute);
+}
+.postponed {
+  margin-top: 3rem;
+}
 .filters {
   display: flex;
   flex-wrap: wrap;

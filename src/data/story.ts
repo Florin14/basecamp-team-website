@@ -14,7 +14,7 @@ export const story = [
     title: 'De la joacă la program săptămânal',
     body: 'Am trecut de la o întâlnire pe săptămână la patru zile de activitate: antrenamente, jocuri competitive și un calendar ținut de la un capăt la altul de coordonatorul echipei.',
     image: '/img/gallery-2.svg',
-    stat: { value: '4', label: 'zile de activitate pe săptămână' },
+    stat: { value: '3', label: 'zile de activitate pe săptămână' },
   },
   {
     year: '2023',

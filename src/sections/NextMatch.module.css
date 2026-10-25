@@ -96,8 +96,13 @@
   margin-bottom: 0.9rem;
 }
 .side {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
   transition: transform 0.4s var(--ease);
+}
+.side img {
+  flex: none;
 }
 .fixture:hover .side {
   transform: translateY(-2px);
@@ -215,13 +220,24 @@
   color: #93c5fd;
 }
 .previousScore {
-  display: flex;
-  align-items: baseline;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
   gap: 0.7rem;
-  margin-top: 0.3rem;
+  margin-top: 0.75rem;
   color: #dbeafe;
   font-size: 0.9rem;
   font-weight: 600;
+}
+.previousTeam {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  min-width: 0;
+  text-align: center;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
 }
 .previousScore strong {
   font-family: var(--font-display);
@@ -229,9 +245,10 @@
   color: #fff;
 }
 .previousMeta {
-  margin-top: 0.25rem;
+  margin-top: 0.75rem;
   font-size: 0.78rem;
   color: #bfdbfe;
+  text-align: center;
 }
 
 /* ---------- Responsive ---------- */

@@ -25,6 +25,7 @@ export {
   fixtures,
   formGuide,
   isHome,
+  isOurMatch,
   isPlayed,
   lastMatch,
   matches,
@@ -33,8 +34,8 @@ export {
   outcome,
   record,
   results,
-  teams,
 } from './matches';
+export { DEFAULT_TEAM_CREST, teamByName, teams } from './teams';
 export {
   articleBySlug,
   featuredArticle,

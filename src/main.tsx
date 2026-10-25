@@ -10,7 +10,7 @@ if (!container) throw new Error('Elementul #root lipsește din index.html');
 
 createRoot(container).render(
   <StrictMode>
-    <BrowserRouter>
+    <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
       <DataProvider>
         <App />
       </DataProvider>

@@ -1,5 +1,6 @@
 import { selectFrom } from '../lib/remote';
 import { competitions } from './competitions';
+import { DEFAULT_TEAM_CREST, teamByName } from './teams';
 import type { StandingsMap } from './standings';
 import type { CompetitionId, Match, Phase, StandingRow } from './types';
 
@@ -8,7 +9,8 @@ type MatchRow = {
   id: string;
   competition: string;
   round: string;
-  kickoff: string;
+  kickoff: string | null;
+  postponed?: boolean;
   venue: string;
   home_name: string;
   home_short: string;
@@ -45,8 +47,6 @@ const knownCompetition = (value: string): CompetitionId | null =>
 const knownPhase = (value: string | null): Phase =>
   value === 'playoff' || value === 'playout' ? value : 'regular';
 
-const DEFAULT_CREST = '/img/crest-1.svg';
-
 function toMatch(row: MatchRow): Match | null {
   const competition = knownCompetition(row.competition);
   if (!competition) return null;
@@ -55,17 +55,18 @@ function toMatch(row: MatchRow): Match | null {
     id: row.id,
     competition,
     round: row.round,
-    kickoff: row.kickoff,
+    kickoff: row.kickoff ?? undefined,
+    postponed: row.postponed ?? false,
     venue: row.venue,
     home: {
       name: row.home_name,
       short: row.home_short,
-      crest: row.home_crest ?? DEFAULT_CREST,
+      crest: row.home_crest?.trim() || teamByName(row.home_name)?.crest || DEFAULT_TEAM_CREST,
     },
     away: {
       name: row.away_name,
       short: row.away_short,
-      crest: row.away_crest ?? DEFAULT_CREST,
+      crest: row.away_crest?.trim() || teamByName(row.away_name)?.crest || DEFAULT_TEAM_CREST,
     },
     score:
       row.home_score === null || row.away_score === null

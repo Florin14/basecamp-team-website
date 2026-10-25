@@ -3,6 +3,7 @@ import {
   competitionById,
   goalDiff,
   standingsFor,
+  teamByName,
   useClubData,
   zoneLegend,
   zoneOf,
@@ -11,6 +12,7 @@ import type { CompetitionId, Phase } from '../../data';
 import { useInView } from '../../hooks';
 import { cx, signed } from '../../lib/format';
 import { FormPills } from './FormPills';
+import { TeamCrest } from '../ui/TeamCrest';
 import styles from './StandingsTable.module.css';
 
 type Props = {
@@ -58,7 +60,7 @@ export function StandingsTable({ competition, phase = 'regular', limit, compact 
             <th scope="col" className={styles.club}>
               Echipă
             </th>
-            <th scope="col">M</th>
+            <th scope="col" className={styles.played}>M</th>
             <th scope="col" className={styles.hideSm}>
               V
             </th>
@@ -71,7 +73,7 @@ export function StandingsTable({ competition, phase = 'regular', limit, compact 
             <th scope="col" className={styles.hideMd}>
               GM:GP
             </th>
-            <th scope="col">GD</th>
+            <th scope="col" className={styles.diff}>GD</th>
             <th scope="col" className={styles.pts}>
               P
             </th>
@@ -99,8 +101,10 @@ export function StandingsTable({ competition, phase = 'regular', limit, compact 
               >
                 <td className={cx(styles.pos, 'tabular')}>{row.position}</td>
                 <th scope="row" className={styles.club}>
-                  <span className={styles.short}>{row.short}</span>
-                  <span className={styles.name}>{row.team}</span>
+                  <span className={styles.team}>
+                    <TeamCrest src={teamByName(row.team)?.crest} width={24} height={24} loading="lazy" />
+                    <span className={styles.name}>{row.team}</span>
+                  </span>
                 </th>
                 <td className="tabular">{row.played}</td>
                 <td className={cx(styles.hideSm, 'tabular')}>{row.won}</td>

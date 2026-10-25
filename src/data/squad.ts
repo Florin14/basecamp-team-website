@@ -1,19 +1,17 @@
 import type { Player, Position } from './types';
 
-/**
- * Placeholder pentru jucătorii fără poză reală încă — cele 6 siluete din
- * `public/img/` se rotesc ciclic. Pozele reale stau în `public/img/players/`
- * și se pun direct pe câmpul `photo`.
- */
-const photo = (i: number) => `/img/player-${(i % 6) + 1}.svg`;
-
 /** Lot de 14 jucători — format de minifotbal: 1 portar + 5 jucători de câmp. */
 export const squad: Player[] = [
   // ---------- Portari ----------
   {
-    id: 'p-1', name: 'Sleam Sebastian', number: 1, position: 'Portar', nationality: 'România',
-    birthDate: '1993-03-12', heightCm: 189, foot: 'Dreptul', joined: '2017', photo: photo(0),
-    stats: { appearances: 214, goals: 2, assists: 6 },
+    id: 'p-1', name: 'Sleam Sebastian', number: 33, position: 'Portar', nationality: 'România',
+    birthDate: '2001-10-18', heightCm: 180, foot: 'Dreptul', joined: '2026', photo: '/img/players/seby_sleam.jpeg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
+  },
+  {
+    id: 'p-21', name: 'Rusu Mihai', number: 1, position: 'Portar', nationality: 'România',
+    birthDate: '1998-10-16', heightCm: 180, foot: 'Dreptul', joined: '2026', photo: '/img/players/mihai_rusu.JPG',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
   // {
   //   id: 'p-2', name: 'Darius Toma', number: 12, position: 'Portar', nationality: 'România',
@@ -24,71 +22,95 @@ export const squad: Player[] = [
   // ---------- Fundași ----------
   {
     id: 'p-3', name: 'Bogdan Tiut', number: 17, position: 'Fundaș', nationality: 'România',
-    birthDate: '1984-05-22', heightCm: 186, foot: 'Dreptul', joined: '2016', photo: '/img/players/bogdan_tiut.jfif',
-    stats: { appearances: 268, goals: 24, assists: 31 }, captain: true,
+    birthDate: '1984-11-17', heightCm: 178, foot: 'Dreptul', joined: '2017', photo: '/img/players/bogdan_tiut.jpeg',
+    stats: { appearances: 0, goals: 1, assists: 0 }, captain: true,
   },
   {
     id: 'p-4', name: 'Rares Muresan', number: 2, position: 'Fundaș', nationality: 'România',
-    birthDate: '1994-11-04', heightCm: 179, foot: 'Dreptul', joined: '2019', photo: '/img/players/mury.jpg',
-    stats: { appearances: 172, goals: 18, assists: 44 },
+    birthDate: '1984-05-04', heightCm: 172, foot: 'Dreptul', joined: '2023', photo: '/img/players/mury.jpg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
   {
     id: 'p-6', name: 'Florin Zimbru', number: 14, position: 'Fundaș', nationality: 'România',
-    birthDate: '1996-12-02', heightCm: 183, foot: 'Dreptul', joined: '2025', photo: '/img/players/florin.jpg',
-    stats: { appearances: 41, goals: 3, assists: 9 },
+    birthDate: '2002-04-14', heightCm: 183, foot: 'Stângul', joined: '2026', photo: '/img/players/florin_zimbru.jpeg',
+    stats: { appearances: 0, goals: 3, assists: 0 },
   },
 
   // ---------- Mijlocași ----------
   {
-    id: 'p-7', name: 'Paul Petrean', number: 6, position: 'Mijlocas', nationality: 'România',
-    birthDate: '1995-08-19', heightCm: 178, foot: 'Dreptul', joined: '2018', photo: '',
-    stats: { appearances: 198, goals: 61, assists: 78 },
+    id: 'p-7', name: 'Paul Petrean', number: 10, position: 'Mijlocas', nationality: 'România',
+    birthDate: '1988-04-20', heightCm: 171, foot: 'Ambele', joined: '2017', photo: '/img/players/paul_petrean.jpeg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
   {
-    id: 'p-8', name: 'Robert Sim', number: 8, position: 'Mijlocas', nationality: 'România',
-    birthDate: '1997-01-25', heightCm: 174, foot: 'Stângul', joined: '2020', photo: '/img/players/robi.jpg',
-    stats: { appearances: 156, goals: 74, assists: 92 },
+    id: 'p-8', name: 'Robert Sim', number: 22, position: 'Mijlocas', nationality: 'România',
+    birthDate: '2003-04-22', heightCm: 180, foot: 'Dreptul', joined: '2024', photo: '/img/players/robert_sim.jpeg',
+    stats: { appearances: 0, goals: 2, assists: 0 },
   },
   {
-    id: 'p-9', name: 'Vlad Rusu', number: 14, position: 'Mijlocas', nationality: 'România',
-    birthDate: '2001-03-03', heightCm: 180, foot: 'Dreptul', joined: '2023', photo: '/img/players/vladut.jpg',
-    stats: { appearances: 84, goals: 29, assists: 33 },
+    id: 'p-9', name: 'Vlad Rusu', number: 78, position: 'Mijlocas', nationality: 'România',
+    birthDate: '2000-05-27', heightCm: 181, foot: 'Dreptul', joined: '2022', photo: '/img/players/vladut_rusu.jpeg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
    {
-    id: 'p-10', name: 'Luca Cenan', number: 15, position: 'Mijlocas', nationality: 'România',
-    birthDate: '2001-03-03', heightCm: 180, foot: 'Dreptul', joined: '2023', photo: '',
-    stats: { appearances: 84, goals: 29, assists: 33 },
+    id: 'p-10', name: 'Luca Cenan', number: 18, position: 'Mijlocas', nationality: 'România',
+    birthDate: '2008-08-18', heightCm: 180, foot: 'Dreptul', joined: '2026', photo: '',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
-   {
-    id: 'p-11', name: 'Cristian Steopei', number: 7, position: 'Mijlocas', nationality: 'România',
-    birthDate: '2001-03-03', heightCm: 180, foot: 'Dreptul', joined: '2023', photo: '',
-    stats: { appearances: 84, goals: 29, assists: 33 },
+
+    {
+    id: 'p-19', name: 'Radu Pop', number: 25, position: 'Mijlocas', nationality: 'România',
+    birthDate: '2003-05-21', heightCm: 177, foot: 'Dreptul', joined: '2026', photo: '/img/players/radu_pop.JPG',
+    stats: { appearances: 0, goals: 1, assists: 0 },
+  },
+      {
+    id: 'p-16', name: 'Norbert Birtalan', number: 27, position: 'Mijlocas', nationality: 'România',
+    birthDate: '1995-06-23', heightCm: 174, foot: 'Dreptul', joined: '2026', photo: '/img/players/norby_birtalan.jpeg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
+  },
+  
+    {
+    id: 'p-17', name: 'Ovidiu Deac', number: 81, position: 'Mijlocas', nationality: 'România',
+    birthDate: '1999-10-19', heightCm: 180, foot: 'Dreptul', joined: '2026', photo: '/img/players/ovidiu_deac.jpeg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
+  },
+  {
+    id: 'p-14', name: 'Stefan Pop Coman', number: 13, position: 'Mijlocas', nationality: 'România',
+    birthDate: '1991-08-03', heightCm: 178, foot: 'Stângul', joined: '2024', photo: '/img/players/stefan_coman.jpeg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
   // ---------- Atacanți ----------
   {
     id: 'p-12', name: 'Raul Hosu', number: 9, position: 'Atacant', nationality: 'România',
-    birthDate: '1996-07-08', heightCm: 184, foot: 'Dreptul', joined: '2019', photo: '/img/players/hosu.jpg',
-    stats: { appearances: 181, goals: 148, assists: 52 },
+    birthDate: '2001-06-27', heightCm: 185, foot: 'Dreptul', joined: '2025', photo: '/img/players/raul_hosu.png',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
   {
-    id: 'p-13', name: 'Tony Tamas', number: 10, position: 'Atacant', nationality: 'România',
-    birthDate: '2000-10-07', heightCm: 172, foot: 'Stângul', joined: '2022', photo: '/img/players/tony.jpg',
-    stats: { appearances: 122, goals: 96, assists: 61 },
+    id: 'p-13', name: 'Tony Tamas', number: 19, position: 'Atacant', nationality: 'România',
+    birthDate: '2003-10-04', heightCm: 176, foot: 'Stângul', joined: '2024', photo: '/img/players/tony_tamas.jpeg',
+    stats: { appearances: 0, goals: 1, assists: 0 },
   },
+  
+   {
+    id: 'p-15', name: 'Raul Pop', number: 16, position: 'Atacant', nationality: 'România',
+    birthDate: '1991-04-20', heightCm: 179, foot: 'Dreptul', joined: '2026', photo: '/img/players/raul_pop.jpeg',
+    stats: { appearances: 0, goals: 0, assists: 0 },
+  },
+
   {
-    id: 'p-14', name: 'Stefan Pop Coman', number: 7, position: 'Atacant', nationality: 'România',
-    birthDate: '2002-12-19', heightCm: 177, foot: 'Stângul', joined: '2024', photo: '/img/players/stefan-pop-coman.webp',
-    stats: { appearances: 63, goals: 38, assists: 24 },
+    id: 'p-18', name: 'Claudiu Veres', number: 7, position: 'Atacant', nationality: 'România',
+    birthDate: '2000-06-17', heightCm: 177, foot: 'Dreptul', joined: '2025', photo: '',
+    stats: { appearances: 0, goals: 0, assists: 0 },
   },
    {
-    id: 'p-15', name: 'Raul Pop', number: 24, position: 'Atacant', nationality: 'România',
-    birthDate: '2002-12-19', heightCm: 177, foot: 'Stângul', joined: '2024', photo: '',
-    stats: { appearances: 63, goals: 38, assists: 24 },
+    id: 'p-11', name: 'Cristian Steopei', number: 20, position: 'Atacant', nationality: 'România',
+    birthDate: '2004-09-20', heightCm: 173, foot: 'Stângul', joined: '2025', photo: '/img/players/cristi_steopei.png',
+    stats: { appearances: 0, goals: 1, assists: 0 },
   },
-    {
-    id: 'p-16', name: 'Norbert Birtalan', number: 27, position: 'Atacant', nationality: 'România',
-    birthDate: '2002-12-19', heightCm: 177, foot: 'Stângul', joined: '2024', photo: '',
-    stats: { appearances: 63, goals: 38, assists: 24 },
+  {
+    id: 'p-20', name: 'Paul Gliga', number: 88, position: 'Atacant', nationality: 'România',
+    birthDate: '2005-10-08', heightCm: 182, foot: 'Dreptul', joined: '2026', photo: '/img/players/paul_gliga.JPG',
+    stats: { appearances: 0, goals: 2, assists: 0 },
   },
 ];
 
