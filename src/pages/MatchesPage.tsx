@@ -4,6 +4,7 @@ import {
   club,
   competitions,
   fixtures,
+  isOurMatch,
   leagueCompetitions,
   ourRow,
   record,
@@ -21,6 +22,7 @@ import styles from './MatchesPage.module.css';
 
 type Tab = 'program' | 'rezultate' | 'clasamente';
 type Filter = CompetitionId | 'toate';
+type Scope = 'club' | 'all';
 
 const tabs: { id: Tab; label: string }[] = [
   { id: 'program', label: 'Program' },
@@ -31,18 +33,24 @@ const tabs: { id: Tab; label: string }[] = [
 export function MatchesPage() {
   useDocumentTitle(
     `Meciuri și clasamente — ${club.name}`,
-    'Programul, rezultatele și clasamentele FC Base Camp din AJM Cluj, ATS Cluj și turneele naționale.',
+    'Programul, rezultatele și clasamentele FC Base Camp din AJM Cluj și ATS Cluj.',
   );
   const { matches, standings, source, updatedAt } = useClubData();
   const [tab, setTab] = useState<Tab>('program');
   const [filter, setFilter] = useState<Filter>('toate');
+  const [scope, setScope] = useState<Scope>('club');
   const [phases, setPhases] = useState<Partial<Record<CompetitionId, Phase>>>({});
 
   const pool = useMemo(
-    () => (filter === 'toate' ? matches : byCompetition(filter, matches)),
-    [filter, matches],
+    () => {
+      const competitionMatches = filter === 'toate' ? matches : byCompetition(filter, matches);
+      return scope === 'club' ? competitionMatches.filter(isOurMatch) : competitionMatches;
+    },
+    [filter, matches, scope],
   );
-  const upcoming = fixtures(pool);
+  const scheduled = fixtures(pool);
+  const upcoming = scheduled.filter((match) => !match.postponed);
+  const postponed = scheduled.filter((match) => match.postponed);
   const past = results(pool);
   const tally = useMemo(() => record(matches), [matches]);
   const leagues = leagueCompetitions();
@@ -95,49 +103,88 @@ export function MatchesPage() {
       <section className="section" aria-label="Meciuri">
         <div className="shell">
           {tab !== 'clasamente' ? (
-            <Reveal className={styles.filters} stagger={60} pop>
-              <button
-                type="button"
-                className={cx(styles.filter, filter === 'toate' && styles.filterActive)}
-                onClick={() => setFilter('toate')}
-                aria-pressed={filter === 'toate'}
-              >
-                Toate competițiile
-              </button>
-              {competitions.map((c) => (
+            <>
+              <div className={styles.scope} role="group" aria-label="Alege echipele afișate">
                 <button
-                  key={c.id}
                   type="button"
-                  className={cx(styles.filter, filter === c.id && styles.filterActive)}
-                  style={{ '--accent': c.accent } as React.CSSProperties}
-                  onClick={() => setFilter(c.id)}
-                  aria-pressed={filter === c.id}
+                  className={cx(styles.scopeButton, scope === 'club' && styles.scopeActive)}
+                  aria-pressed={scope === 'club'}
+                  onClick={() => setScope('club')}
                 >
-                  <span className={styles.filterDot} aria-hidden />
-                  {c.short}
+                  Meciurile Base Camp
                 </button>
-              ))}
-            </Reveal>
+                <button
+                  type="button"
+                  className={cx(styles.scopeButton, scope === 'all' && styles.scopeActive)}
+                  aria-pressed={scope === 'all'}
+                  onClick={() => setScope('all')}
+                >
+                  Toate echipele
+                </button>
+              </div>
+              <p className={styles.scopeNote} aria-live="polite">
+                {scope === 'club'
+                  ? 'Programul și rezultatele FC Base Camp, în toate competițiile.'
+                  : 'Programul și rezultatele tuturor echipelor din campionate.'}
+              </p>
+              <Reveal className={styles.filters} stagger={60} pop>
+                <button
+                  type="button"
+                  className={cx(styles.filter, filter === 'toate' && styles.filterActive)}
+                  onClick={() => setFilter('toate')}
+                  aria-pressed={filter === 'toate'}
+                >
+                  Toate competițiile
+                </button>
+                {competitions.map((c) => (
+                  <button
+                    key={c.id}
+                    type="button"
+                    className={cx(styles.filter, filter === c.id && styles.filterActive)}
+                    style={{ '--accent': c.accent } as React.CSSProperties}
+                    onClick={() => setFilter(c.id)}
+                    aria-pressed={filter === c.id}
+                  >
+                    <span className={styles.filterDot} aria-hidden />
+                    {c.short}
+                  </button>
+                ))}
+              </Reveal>
+            </>
           ) : null}
 
           {tab === 'program' ? (
             <div id="panel-program" role="tabpanel" aria-labelledby="tab-program">
               {upcoming.length ? (
-                <Reveal key={filter} className={styles.grid} stagger={90}>
+                <Reveal key={`${scope}-${filter}`} className={styles.grid} stagger={90}>
                   {upcoming.map((m) => (
                     <MatchCard key={m.id} match={m} />
                   ))}
                 </Reveal>
-              ) : (
+              ) : !postponed.length ? (
                 <p className={styles.empty}>Nu există meciuri programate pentru acest filtru.</p>
-              )}
+              ) : null}
+              {postponed.length ? (
+                <div className={styles.postponed}>
+                  <SectionHead
+                    eyebrow="Reprogramări"
+                    title="Meciuri amânate"
+                    sub="Noua dată de disputare urmează să fie anunțată."
+                  />
+                  <Reveal key={`postponed-${scope}-${filter}`} className={styles.grid} stagger={90}>
+                    {postponed.map((match) => (
+                      <MatchCard key={match.id} match={match} />
+                    ))}
+                  </Reveal>
+                </div>
+              ) : null}
             </div>
           ) : null}
 
           {tab === 'rezultate' ? (
             <div id="panel-rezultate" role="tabpanel" aria-labelledby="tab-rezultate">
               {past.length ? (
-                <Reveal key={filter} className={styles.grid} stagger={90}>
+                <Reveal key={`${scope}-${filter}`} className={styles.grid} stagger={90}>
                   {past.map((m) => (
                     <MatchCard key={m.id} match={m} />
                   ))}

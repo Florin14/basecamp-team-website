@@ -5,7 +5,7 @@ export const news: Article[] = [
     slug: 'trei-competitii-in-sezonul-2026-2027',
     title: 'FC Base Camp joacă în trei competiții în sezonul 2026/2027',
     excerpt:
-      'Campionatul Județean AJM Cluj, Liga 1 All Time Sport, Friends4Football și turneele naționale FRM — patru zile de activitate pe săptămână.',
+      'Campionatul Județean AJM Cluj, Liga 1 All Time Sport și turneele naționale sub egida FRM — trei zile de activitate pe săptămână.',
     category: 'Competiții',
     date: '2026-08-28',
     author: 'Departamentul de comunicare',

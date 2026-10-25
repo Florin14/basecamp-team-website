@@ -9,7 +9,8 @@ principală plus pagini dedicate pentru club, lot, meciuri, știri și sponsoriz
 | Real | Încă demo, de înlocuit |
 |---|---|
 | Identitatea clubului, sigla, orașul, terenul (Liceul Eugen Pora) | Lotul de jucători și statisticile lor |
-| Competițiile: AJM Cluj, Liga 1 All Time Sport, Friends4Football turnee FRM | Meciurile, rezultatele și clasamentele |
+| AJM: cele 9 echipe, rezultatele și clasamentul etapei 1, programul etapei 2 (2026/2027) | Siglele adversarilor lipsesc până la adăugarea fișierelor |
+| ATS: cele 14 echipe, etapele 1–5, clasamentul după etapa 5 și programul etapei 6 | — |
 | Propunerea de sponsorizare: pachete, buget, plan de acoperire, direcție 3 ani | Știrile și galeria foto |
 | Contactele: Bogdan Tiut (coordonator echipă), Zimbru Florin (sponsorizări), pagina de Facebook | — |
 
@@ -36,7 +37,7 @@ npm run typecheck  # doar verificarea de tipuri
 | `/` | Landing, în ordinea: hero → următorul meci → despre club → lot → galerie → competiții → știri → rezultate și clasamente → contact |
 | `/club` | Povestea clubului, parcursă la scroll (secțiunea `Story`) |
 | `/lot` | Golgheterii clubului, lotul grupat pe posturi cu filtre, staff-ul |
-| `/meciuri` | Program, rezultate și clasamente (tab-uri), filtru pe competiție, play-off/play-out |
+| `/meciuri` | Implicit meciurile Base Camp; comutator pentru toate echipele, program, rezultate, amânări și clasamente, filtru pe competiție |
 | `/stiri` | Toate articolele, cu filtru pe categorie |
 | `/stiri/:slug` | Articol individual + articole conexe |
 | `/sponsorizare` | Propunerea pentru parteneri (`Partners`) + sponsorii actuali (`Sponsors`) |
@@ -53,7 +54,7 @@ Clubul joacă simultan în patru competiții, definite în `src/data/competition
 |---|---|---|
 | Campionatul Județean de Minifotbal (AJM Cluj) | Campionat | sezon regulat → play-off (primele 6) / play-out |
 | Liga 1 All Time Sport (ATS Cluj) | Campionat | clasament unic |
-| Friends4Football | Campionat | sezon regulat → play-off (primele 7) / play-out |
+| Campionat | sezon regulat → play-off (primele 7) / play-out |
 | Turnee naționale (sub egida FRM) | Turnee | fără clasament |
 
 > Structura fazelor pentru AJM este o presupunere — de confirmat cu regulamentul
@@ -167,30 +168,60 @@ supabase/       schema.sql + seed.sql
 
 ### Pozele jucătorilor
 
-Placeholder-ele (`/img/player-1..6.svg`) se atribuie ciclic prin helper-ul `photo(i)` din
-`src/data/squad.ts`. O poză reală se pune direct pe câmpul `photo`, fără helper:
+Jucătorii fără fotografie (`photo: ''`) sau cu o imagine care nu se poate încărca
+folosesc silueta existentă `/img/player-1.svg`, prin componenta `PlayerPhoto`.
+Aceasta se aplică atât cardurilor, cât și listei golgheterilor.
+O poză reală se pune direct pe câmpul `photo` din `src/data/squad.ts`:
 
 ```ts
 photo: '/img/players/stefan-pop-coman.webp',
 ```
 
 Formatul cerut de `PlayerCard`: raport **4 / 4.4** (`object-fit: cover`, plus un zoom de
-1,07 la hover), deci **660 × 726 px WebP la calitate ~76** — sub 70 KB și clar pe ecrane
+1,07 la hover, cu încadrarea și zoom-ul ancorate sus), deci **660 × 726 px WebP la calitate ~76** — sub 70 KB și clar pe ecrane
 retina pentru un card de ~280 px. Decupajul se face pe **cap și bust**, centrat pe față;
 pozele de grup sau de vacanță trebuie tăiate, altfel jucătorul iese minuscul în card.
 Numele fișierului = numele jucătorului cu cratime, ca să nu depindă de ordinea din listă.
 
 ## Date
 
-Conținutul este **demo** și se înlocuiește fără a atinge componentele:
+Conținutul se actualizează în `src/data/`, fără a atinge componentele:
 
 - `club.ts` — identitate, teren, contact, rețele sociale, cifrele din hero
 - `competitions.ts` — competițiile, fazele și zonele de clasament
 - `squad.ts` / `staff.ts` — lotul (14 jucători) și banca tehnică
-- `matches.ts` — program + rezultate (un meci devine „rezultat" când primește `score`)
+- `teams.ts` — lista comună de echipe AJM și ATS și căile siglelor
+- `matches.ts` — programul și rezultatele tuturor echipelor din AJM și ATS
+  (un meci devine „rezultat" când primește `score`)
 - `standings.ts` — clasamentele, pe competiție și pe fază
 - `news.ts`, `sponsors.ts`, `gallery.ts`
 - `DataProvider.tsx` — înlocuiește `matches` și `standings` cu datele din Supabase
+
+**Datele din imaginile campionatelor:** AJM reproduce toate cele 4 rezultate ale
+etapei 1, clasamentul cu 9 echipe în ordinea publicată și cele 4 meciuri din
+28 octombrie 2026, cu orele și terenurile indicate. Base Camp – Regional Florești
+s-a jucat pe 21 octombrie 2026, la 20:30, conform confirmării clubului. Pentru
+celelalte meciuri ale etapei 1, `kickoff` rămâne necompletat: data și ora lipsesc
+din afiș. „ACS Base Camp” este afișat cu numele clubului din site, „FC Base Camp”,
+pentru a păstra identificarea echipei.
+
+La ATS, capturile Diviziei A furnizează cele **31 de rezultate din etapele 1–5**,
+**4 meciuri amânate** și **7 meciuri programate în etapa 6**. Clasamentul este
+verificat cu aceste rezultate, în ordinea tabelului publicat. O partidă amânată
+are `postponed: true`, fără `kickoff` sau `score`; data de 01.01.1970 din sursă
+nu se importă. Păstrăm datele efective de joc din capturi, inclusiv pentru
+partidele disputate în afara săptămânii etapei.
+
+Pagina `/meciuri` afișează implicit doar Base Camp. Comutatorul **Toate echipele**
+extinde programul și rezultatele; filtrul pe competiție se aplică ambelor moduri.
+Meciurile amânate apar separat în Program. Bilanțul și următorul meci al clubului
+folosesc doar partidele sale și exclud amânările din următoarea programare.
+
+**Siglele echipelor:** adaugă fișierele în `public/img/teams/`, conform
+[listei de nume](public/img/teams/README.md). De exemplu, `hnh.jpg` apare
+automat pentru HNH în ambele campionate. Căile sunt definite în `teams.ts`;
+poți schimba extensia acolo. Siglele lipsă sau care nu se pot încărca folosesc
+`public/img/teams/default.svg`. Base Camp folosește `basecamp.jpeg` în afișările echipelor.
 
 ## Pagina principală: prezentare întâi, tehnic la final
 

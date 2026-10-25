@@ -1,11 +1,13 @@
 export type Position = 'Portar' | 'Fundaș' | 'Mijlocas' | 'Atacant';
 
 export type Player = {
+  /** Identificator unic și stabil, folosit drept cheie React și în selecția de pe prima pagină. */
   id: string;
   name: string;
   number: number;
   position: Position;
   nationality: string;
+  /** Data nașterii în format YYYY-MM-DD. */
   birthDate: string;
   heightCm: number;
   foot: 'Dreptul' | 'Stângul' | 'Ambele';
@@ -27,7 +29,7 @@ export type StaffMember = {
 };
 
 /** Competițiile în care echipa este înscrisă în sezonul curent. */
-export type CompetitionId = 'f4f' | 'ajm' | 'ats' | 'frm';
+export type CompetitionId = 'ajm' | 'ats';
 
 /** Fazele unui campionat cu play-off/play-out. */
 export type Phase = 'regular' | 'playoff' | 'playout';
@@ -69,13 +71,15 @@ export type Match = {
   id: string;
   competition: CompetitionId;
   round: string;
-  /** ISO 8601 cu fus orar. */
-  kickoff: string;
+  /** ISO 8601 cu fus orar; lipsește dacă sursa nu precizează data și ora. */
+  kickoff?: string;
   venue: string;
   home: Team;
   away: Team;
   /** Lipsește pentru meciurile care nu s-au jucat. */
   score?: { home: number; away: number };
+  /** Amânat, în așteptarea unei noi programări. Nu participă la calculul următorului meci. */
+  postponed?: boolean;
   report?: string;
   liveUrl?: string;
 };

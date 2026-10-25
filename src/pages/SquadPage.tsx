@@ -16,6 +16,7 @@ import { PageHeader } from '../components/layout';
 import { PlayerCard, StaffCard } from '../components/cards';
 import { Reveal } from '../components/ui/Reveal';
 import { SectionHead } from '../components/ui/SectionHead';
+import { PlayerPhoto } from '../components/ui/PlayerPhoto';
 import styles from './SquadPage.module.css';
 
 type Filter = 'Toți' | Position;
@@ -83,11 +84,11 @@ export function SquadPage() {
             {topScorers(5).map((player, i) => (
               <article key={player.id} className={cx('panel', styles.scorer)}>
                 <span className={styles.rank}>{i + 1}</span>
-                <img src={player.photo} alt="" width={48} height={48} />
+                <PlayerPhoto src={player.photo} alt="" width={48} height={48} />
                 <div className={styles.scorerBody}>
                   <p className={styles.scorerName}>{player.name}</p>
                   <p className={styles.scorerMeta}>
-                    {player.position} · {player.stats.appearances} meciuri
+                    {player.position} 
                   </p>
                 </div>
                 <p className={cx(styles.scorerGoals, 'tabular')}>

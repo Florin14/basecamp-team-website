@@ -2,6 +2,7 @@ import { useState } from 'react';
 import {
   competitionById,
   fixtures,
+  isOurMatch,
   leagueCompetitions,
   results,
   useClubData,
@@ -21,8 +22,8 @@ export function ResultsAndStandings() {
   const leagues = leagueCompetitions();
   const [active, setActive] = useState<CompetitionId>(leagues[0].id);
   const [phase, setPhase] = useState<Phase>('regular');
-  const recent = results(matches).slice(0, 2);
-  const upcoming = fixtures(matches).slice(0, 1);
+  const recent = results(matches).filter(isOurMatch).slice(0, 2);
+  const upcoming = fixtures(matches).filter(isOurMatch).slice(0, 1);
   const meta = competitionById(active);
 
   const selectCompetition = (id: CompetitionId) => {

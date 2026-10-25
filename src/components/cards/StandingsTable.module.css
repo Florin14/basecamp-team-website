@@ -68,11 +68,20 @@
   color: var(--text-strong);
   padding-left: 0.4rem !important;
 }
-.short {
-  display: none;
+.team {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-width: 0;
+}
+.team img {
+  flex: none;
 }
 .name {
-  display: inline;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.35;
 }
 .pts {
   position: relative;
@@ -185,12 +194,21 @@
   }
   .table {
     font-size: 0.86rem;
+    table-layout: fixed;
   }
-  .short {
-    display: inline;
+  .table th,
+  .table td {
+    padding-inline: 0.35rem;
   }
-  .name {
-    display: none;
+  .pos,
+  .played {
+    width: 2rem;
+  }
+  .diff {
+    width: 2.75rem;
+  }
+  .pts {
+    width: 2.4rem;
   }
 }
 .compactWrap .hideMd {

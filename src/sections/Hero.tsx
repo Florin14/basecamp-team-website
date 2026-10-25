@@ -60,7 +60,7 @@ export function Hero() {
           <span className={`${styles.float} ${styles.floatDot} breathe`} />
           <span className={`${styles.float} ${styles.floatDot2} breathe`} />
           <span className={`${styles.float} ${styles.floatRing} spin-slow`} />
-          {next ? (
+          {next?.kickoff ? (
             <span ref={chipRef} className={`${styles.float} ${styles.chipWrap}`}>
               <span className={`glass ${styles.chip} floaty`}>
                 <span className={styles.chipIcon}>

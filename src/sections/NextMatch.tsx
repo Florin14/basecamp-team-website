@@ -5,6 +5,7 @@ import { cx, formatKickoff } from '../lib/format';
 import { Button } from '../components/ui/Button';
 import { ArrowRight, Pin, Trophy } from '../components/ui/Icon';
 import { Reveal } from '../components/ui/Reveal';
+import { TeamCrest } from '../components/ui/TeamCrest';
 import styles from './NextMatch.module.css';
 
 const units = ['zile', 'ore', 'minute', 'secunde'] as const;
@@ -62,12 +63,20 @@ export function NextMatch() {
           </p>
 
           <h2 id="urmatorul-meci" className={styles.fixture}>
-            <span className={styles.side}>{match.home.short === 'BSC' ? 'Base Camp' : match.home.name}</span>
+            <span className={styles.side}>
+              <TeamCrest src={match.home.crest} />
+              {match.home.short === 'BSC' ? 'Base Camp' : match.home.name}
+            </span>
             <span className={styles.vs}>vs</span>
-            <span className={styles.side}>{match.away.short === 'BSC' ? 'Base Camp' : match.away.name}</span>
+            <span className={styles.side}>
+              <TeamCrest src={match.away.crest} />
+              {match.away.short === 'BSC' ? 'Base Camp' : match.away.name}
+            </span>
           </h2>
 
-          <p className={styles.when}>{formatKickoff(match.kickoff)}</p>
+          <p className={styles.when}>
+            {match.kickoff ? formatKickoff(match.kickoff) : 'Data și ora urmează să fie anunțate'}
+          </p>
           <p className={styles.where}>
             <Pin size={16} /> {match.venue} · {home ? 'meci acasă' : 'deplasare'}
           </p>
@@ -83,26 +92,34 @@ export function NextMatch() {
         </Reveal>
 
         <Reveal className={styles.side2} variant="fade-left" delay={120}>
-          <div className={styles.countdown}>
-            {values.map((v, i) => (
-              <div key={units[i]} className={styles.unit}>
-                <span className={cx(styles.value, 'tabular')}>
-                  <Flip value={pad(v)} />
-                </span>
-                <span className={styles.unitLabel}>{units[i]}</span>
-              </div>
-            ))}
-          </div>
+          {match.kickoff ? (
+            <div className={styles.countdown}>
+              {values.map((v, i) => (
+                <div key={units[i]} className={styles.unit}>
+                  <span className={cx(styles.value, 'tabular')}>
+                    <Flip value={pad(v)} />
+                  </span>
+                  <span className={styles.unitLabel}>{units[i]}</span>
+                </div>
+              ))}
+            </div>
+          ) : null}
 
           {previous && prevResult ? (
             <div className={styles.previous}>
               <p className={styles.previousLabel}>Ultimul rezultat</p>
               <p className={styles.previousScore}>
-                <span>{previous.home.short}</span>
+                <span className={styles.previousTeam}>
+                  <TeamCrest src={previous.home.crest} width={32} height={32} />
+                  <span>{previous.home.name}</span>
+                </span>
                 <strong className="tabular">
                   {previous.score!.home}–{previous.score!.away}
                 </strong>
-                <span>{previous.away.short}</span>
+                <span className={styles.previousTeam}>
+                  <TeamCrest src={previous.away.crest} width={32} height={32} />
+                  <span>{previous.away.name}</span>
+                </span>
               </p>
               <p className={styles.previousMeta}>
                 {competitionById(previous.competition).short} · {previous.round}

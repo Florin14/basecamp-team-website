@@ -9,24 +9,24 @@ const playout = (note: string): PhaseInfo => ({ id: 'playout', label: 'Play-out'
  * Structura fazelor pentru AJM este o presupunere — de confirmat cu regulamentul.
  */
 export const competitions: Competition[] = [
-  {
-    id: 'f4f',
-    name: 'Friends4Football',
-    short: 'F4F Cluj',
-    format: 'Campionat',
-    scope: 'Friends4Football, Cluj-Napoca',
-    season: '2026',
-    hasStandings: true,
-    playoffCut: 7,
-    relegationCount: 1,
-    phases: [
-      regular('Sezon regulat, doar tur, cu toate echipele înscrise.'),
-      playoff('Primele 7 din sezonul regulat se bat pentru titlu.'),
-      playout('Restul echipelor, pentru calificarea in play-off-ul care da echipa de pe locul 3 in clasamentul final.'),
-    ],
-    goal: 'Play-off și lupta pentru titlu',
-    accent: '#2563EB',
-  },
+  // {
+  //   id: 'f4f',
+  //   name: 'Friends4Football',
+  //   short: 'F4F Cluj',
+  //   format: 'Campionat',
+  //   scope: 'Friends4Football, Cluj-Napoca',
+  //   season: '2026',
+  //   hasStandings: true,
+  //   playoffCut: 7,
+  //   relegationCount: 1,
+  //   phases: [
+  //     regular('Sezon regulat, doar tur, cu toate echipele înscrise.'),
+  //     playoff('Primele 7 din sezonul regulat se bat pentru titlu.'),
+  //     playout('Restul echipelor, pentru calificarea in play-off-ul care da echipa de pe locul 3 in clasamentul final.'),
+  //   ],
+  //   goal: 'Play-off și lupta pentru titlu',
+  //   accent: '#2563EB',
+  // },
   {
     id: 'ajm',
     name: 'Campionatul Județean de Minifotbal',
@@ -35,11 +35,11 @@ export const competitions: Competition[] = [
     scope: 'Asociația Județeană de Minifotbal Cluj',
     season: '2026/2027',
     hasStandings: true,
-    playoffCut: 6,
+    playoffCut: 4,
     relegationCount: 1,
     phases: [
       regular('Sezon regulat, tur-retur, cu toate echipele înscrise.'),
-      playoff('Primele 6 din sezonul regulat se bat pentru titlul județean.'),
+      playoff('Primele 4 din sezonul regulat se bat pentru titlul județean.'),
       playout('Restul echipelor, pentru stabilirea clasamentului final.'),
     ],
     goal: 'Play-off și lupta pentru titlul județean',
@@ -57,18 +57,18 @@ export const competitions: Competition[] = [
     goal: 'Primele trei locuri',
     accent: '#0EA5E9',
   },
-  {
-    id: 'frm',
-    name: 'Turnee naționale',
-    short: 'Turnee FRM',
-    format: 'Turnee',
-    scope: 'Sub egida Federației Române de Minifotbal',
-    season: '2026/2027',
-    hasStandings: false,
-    phases: [],
-    goal: '1-2 turnee majore pe an, plus turnee de pregătire',
-    accent: '#7C3AED',
-  },
+  // {
+  //   id: 'frm',
+  //   name: 'Turnee naționale',
+  //   short: 'Turnee FRM',
+  //   format: 'Turnee',
+  //   scope: 'Sub egida Federației Române de Minifotbal',
+  //   season: '2026/2027',
+  //   hasStandings: false,
+  //   phases: [],
+  //   goal: '1-2 turnee majore pe an, plus turnee de pregătire',
+  //   accent: '#7C3AED',
+  // },
 ];
 
 export const competitionById = (id: CompetitionId): Competition =>

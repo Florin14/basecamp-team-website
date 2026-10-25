@@ -90,6 +90,8 @@
   width: 100%;
   aspect-ratio: 4 / 4.4;
   object-fit: cover;
+  object-position: center top;
+  transform-origin: center top;
   transition: transform 0.7s var(--ease);
 }
 .card:hover .media img {

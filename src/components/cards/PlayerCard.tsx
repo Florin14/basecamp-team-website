@@ -1,6 +1,7 @@
 import { ageOf } from '../../data';
 import type { Player } from '../../data';
 import { useTilt } from '../../hooks';
+import { PlayerPhoto } from '../ui/PlayerPhoto';
 import styles from './PlayerCard.module.css';
 
 export function PlayerCard({ player }: { player: Player }) {
@@ -15,7 +16,7 @@ export function PlayerCard({ player }: { player: Player }) {
       {player.captain ? <span className={styles.captain}>Căpitan</span> : null}
 
       <div className={styles.media}>
-        <img src={player.photo} alt={player.name} width={220} height={260} loading="lazy" />
+        <PlayerPhoto src={player.photo} alt={player.name} width={220} height={260} loading="lazy" />
       </div>
 
       <div className={styles.body}>

@@ -1,5 +1,6 @@
 import { club } from './club';
 import { competitionById } from './competitions';
+import { teams } from './teams';
 import type { CompetitionId, Phase, StandingRow } from './types';
 
 const us = club.name;
@@ -8,44 +9,53 @@ const us = club.name;
 export type StandingsMap = Partial<Record<CompetitionId, Partial<Record<Phase, StandingRow[]>>>>;
 
 export const standings: StandingsMap = {
-  f4f: {
-    regular: [
-      { position: 1, team: 'AS Someșeni', short: 'SOM', played: 3, won: 3, drawn: 0, lost: 0, goalsFor: 14, goalsAgainst: 6, points: 9, form: ['V', 'V', 'V'] },
-      { position: 2, team: us, short: 'BSC', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 13, goalsAgainst: 9, points: 6, form: ['V', 'Î', 'V'] },
-      { position: 3, team: 'Gruia Minifotbal', short: 'GRU', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 11, goalsAgainst: 8, points: 6, form: ['Î', 'V', 'V'] },
-      { position: 4, team: 'Mănăștur United', short: 'MAN', played: 3, won: 1, drawn: 2, lost: 0, goalsFor: 9, goalsAgainst: 7, points: 5, form: ['E', 'V', 'E'] },
-      { position: 5, team: 'Florești FC', short: 'FLO', played: 3, won: 1, drawn: 1, lost: 1, goalsFor: 10, goalsAgainst: 10, points: 4, form: ['V', 'E', 'Î'] },
-      { position: 6, team: 'Apahida Team', short: 'APA', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 9, goalsAgainst: 12, points: 3, form: ['V', 'Î', 'Î'] },
-      { position: 7, team: 'Mărăști Sport', short: 'MAR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 7, goalsAgainst: 10, points: 3, form: ['Î', 'V', 'Î'] },
-      { position: 8, team: 'Zorilor FC', short: 'ZOR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 8, goalsAgainst: 12, points: 3, form: ['Î', 'V', 'Î'] },
-      { position: 9, team: 'Baciu Minifotbal', short: 'BAC', played: 3, won: 0, drawn: 2, lost: 1, goalsFor: 6, goalsAgainst: 8, points: 2, form: ['E', 'Î', 'E'] },
-      { position: 10, team: 'Someș Sport', short: 'SMS', played: 3, won: 0, drawn: 1, lost: 2, goalsFor: 5, goalsAgainst: 10, points: 1, form: ['E', 'Î', 'Î'] },
-    ],
-  },
+  // f4f: {
+  //   regular: [
+  //     { position: 1, team: 'AS Someșeni', short: 'SOM', played: 3, won: 3, drawn: 0, lost: 0, goalsFor: 14, goalsAgainst: 6, points: 9, form: ['V', 'V', 'V'] },
+  //     { position: 2, team: us, short: 'BSC', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 13, goalsAgainst: 9, points: 6, form: ['V', 'Î', 'V'] },
+  //     { position: 3, team: 'Gruia Minifotbal', short: 'GRU', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 11, goalsAgainst: 8, points: 6, form: ['Î', 'V', 'V'] },
+  //     { position: 4, team: 'Mănăștur United', short: 'MAN', played: 3, won: 1, drawn: 2, lost: 0, goalsFor: 9, goalsAgainst: 7, points: 5, form: ['E', 'V', 'E'] },
+  //     { position: 5, team: 'Florești FC', short: 'FLO', played: 3, won: 1, drawn: 1, lost: 1, goalsFor: 10, goalsAgainst: 10, points: 4, form: ['V', 'E', 'Î'] },
+  //     { position: 6, team: 'Apahida Team', short: 'APA', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 9, goalsAgainst: 12, points: 3, form: ['V', 'Î', 'Î'] },
+  //     { position: 7, team: 'Mărăști Sport', short: 'MAR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 7, goalsAgainst: 10, points: 3, form: ['Î', 'V', 'Î'] },
+  //     { position: 8, team: 'Zorilor FC', short: 'ZOR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 8, goalsAgainst: 12, points: 3, form: ['Î', 'V', 'Î'] },
+  //     { position: 9, team: 'Baciu Minifotbal', short: 'BAC', played: 3, won: 0, drawn: 2, lost: 1, goalsFor: 6, goalsAgainst: 8, points: 2, form: ['E', 'Î', 'E'] },
+  //     { position: 10, team: 'Someș Sport', short: 'SMS', played: 3, won: 0, drawn: 1, lost: 2, goalsFor: 5, goalsAgainst: 10, points: 1, form: ['E', 'Î', 'Î'] },
+  //   ],
+  // },
   ajm: {
+    // Ordinea oficială din afișul etapei 1; golaverajul rezultă din cele 4 scoruri.
+    // ACS Base Camp din AJM este același club cu FC Base Camp de pe site.
     regular: [
-      { position: 1, team: 'AS Someșeni', short: 'SOM', played: 3, won: 3, drawn: 0, lost: 0, goalsFor: 14, goalsAgainst: 6, points: 9, form: ['V', 'V', 'V'] },
-      { position: 2, team: us, short: 'BSC', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 13, goalsAgainst: 9, points: 6, form: ['V', 'Î', 'V'] },
-      { position: 3, team: 'Gruia Minifotbal', short: 'GRU', played: 3, won: 2, drawn: 0, lost: 1, goalsFor: 11, goalsAgainst: 8, points: 6, form: ['Î', 'V', 'V'] },
-      { position: 4, team: 'Mănăștur United', short: 'MAN', played: 3, won: 1, drawn: 2, lost: 0, goalsFor: 9, goalsAgainst: 7, points: 5, form: ['E', 'V', 'E'] },
-      { position: 5, team: 'Florești FC', short: 'FLO', played: 3, won: 1, drawn: 1, lost: 1, goalsFor: 10, goalsAgainst: 10, points: 4, form: ['V', 'E', 'Î'] },
-      { position: 6, team: 'Apahida Team', short: 'APA', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 9, goalsAgainst: 12, points: 3, form: ['V', 'Î', 'Î'] },
-      { position: 7, team: 'Mărăști Sport', short: 'MAR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 7, goalsAgainst: 10, points: 3, form: ['Î', 'V', 'Î'] },
-      { position: 8, team: 'Zorilor FC', short: 'ZOR', played: 3, won: 1, drawn: 0, lost: 2, goalsFor: 8, goalsAgainst: 12, points: 3, form: ['Î', 'V', 'Î'] },
-      { position: 9, team: 'Baciu Minifotbal', short: 'BAC', played: 3, won: 0, drawn: 2, lost: 1, goalsFor: 6, goalsAgainst: 8, points: 2, form: ['E', 'Î', 'E'] },
-      { position: 10, team: 'Someș Sport', short: 'SMS', played: 3, won: 0, drawn: 1, lost: 2, goalsFor: 5, goalsAgainst: 10, points: 1, form: ['E', 'Î', 'Î'] },
+      { position: 1, team: teams.regionalFloresti.name, short: 'REG', played: 1, won: 1, drawn: 0, lost: 0, goalsFor: 5, goalsAgainst: 1, points: 3, form: ['V'] },
+      { position: 2, team: teams.studentii.name, short: 'STU', played: 1, won: 1, drawn: 0, lost: 0, goalsFor: 4, goalsAgainst: 2, points: 3, form: ['V'] },
+      { position: 3, team: teams.luceafarul.name, short: 'LUC', played: 1, won: 1, drawn: 0, lost: 0, goalsFor: 2, goalsAgainst: 1, points: 3, form: ['V'] },
+      { position: 4, team: teams.lionCubs.name, short: 'LIO', played: 1, won: 1, drawn: 0, lost: 0, goalsFor: 1, goalsAgainst: 0, points: 3, form: ['V'] },
+      { position: 5, team: teams.uCbt.name, short: 'UCB', played: 0, won: 0, drawn: 0, lost: 0, goalsFor: 0, goalsAgainst: 0, points: 0, form: [] },
+      { position: 6, team: teams.etc.name, short: 'ETC', played: 1, won: 0, drawn: 0, lost: 1, goalsFor: 1, goalsAgainst: 2, points: 0, form: ['Î'] },
+      { position: 7, team: teams.hnh.name, short: 'HNH', played: 1, won: 0, drawn: 0, lost: 1, goalsFor: 0, goalsAgainst: 1, points: 0, form: ['Î'] },
+      { position: 8, team: teams.clujana.name, short: 'CFF', played: 1, won: 0, drawn: 0, lost: 1, goalsFor: 2, goalsAgainst: 4, points: 0, form: ['Î'] },
+      { position: 9, team: us, short: 'BSC', played: 1, won: 0, drawn: 0, lost: 1, goalsFor: 1, goalsAgainst: 5, points: 0, form: ['Î'] },
     ],
   },
   ats: {
+    // Clasamentul publicat după etapa 5, verificat cu cele 31 de rezultate ATS.
+    // Meciurile amânate nu contribuie la bilanț; ordinea este cea din tabelul oficial.
     regular: [
-      { position: 1, team: 'Napoca All Stars', short: 'NAP', played: 2, won: 1, drawn: 1, lost: 0, goalsFor: 8, goalsAgainst: 5, points: 4, form: ['E', 'V'] },
-      { position: 2, team: us, short: 'BSC', played: 2, won: 1, drawn: 1, lost: 0, goalsFor: 10, goalsAgainst: 5, points: 4, form: ['E', 'V'] },
-      { position: 3, team: 'Ferdinand Team', short: 'FER', played: 2, won: 1, drawn: 0, lost: 1, goalsFor: 7, goalsAgainst: 6, points: 3, form: ['V', 'Î'] },
-      { position: 4, team: 'Polus United', short: 'POL', played: 2, won: 1, drawn: 0, lost: 1, goalsFor: 6, goalsAgainst: 6, points: 3, form: ['Î', 'V'] },
-      { position: 5, team: 'Iris Sport', short: 'IRI', played: 2, won: 1, drawn: 0, lost: 1, goalsFor: 5, goalsAgainst: 6, points: 3, form: ['V', 'Î'] },
-      { position: 6, team: 'Bună Ziua FC', short: 'BZI', played: 2, won: 0, drawn: 2, lost: 0, goalsFor: 4, goalsAgainst: 4, points: 2, form: ['E', 'E'] },
-      { position: 7, team: 'Gheorgheni Team', short: 'GHE', played: 2, won: 0, drawn: 1, lost: 1, goalsFor: 3, goalsAgainst: 5, points: 1, form: ['Î', 'E'] },
-      { position: 8, team: 'Dâmbul Rotund', short: 'DAM', played: 2, won: 0, drawn: 1, lost: 1, goalsFor: 4, goalsAgainst: 10, points: 1, form: ['E', 'Î'] },
+      { position: 1, team: teams.lionCubs.name, short: 'LIO', played: 5, won: 5, drawn: 0, lost: 0, goalsFor: 54, goalsAgainst: 10, points: 15, form: ['V', 'V', 'V', 'V', 'V'] },
+      { position: 2, team: teams.safetyGroup.name, short: 'SAF', played: 4, won: 4, drawn: 0, lost: 0, goalsFor: 27, goalsAgainst: 7, points: 12, form: ['V', 'V', 'V', 'V'] },
+      { position: 3, team: teams.luceafarul.name, short: 'LUC', played: 5, won: 4, drawn: 0, lost: 1, goalsFor: 26, goalsAgainst: 11, points: 12, form: ['V', 'V', 'V', 'V', 'Î'] },
+      { position: 4, team: teams.hnh.name, short: 'HNH', played: 5, won: 3, drawn: 1, lost: 1, goalsFor: 27, goalsAgainst: 24, points: 10, form: ['V', 'Î', 'V', 'E', 'V'] },
+      { position: 5, team: teams.transilvania.name, short: 'TRA', played: 5, won: 2, drawn: 1, lost: 2, goalsFor: 28, goalsAgainst: 17, points: 7, form: ['E', 'V', 'Î', 'Î', 'V'] },
+      { position: 6, team: teams.unDoi.name, short: 'UND', played: 4, won: 2, drawn: 0, lost: 2, goalsFor: 15, goalsAgainst: 30, points: 6, form: ['Î', 'Î', 'V', 'V'] },
+      { position: 7, team: teams.cvbEngineering.name, short: 'CVB', played: 5, won: 2, drawn: 0, lost: 3, goalsFor: 24, goalsAgainst: 25, points: 6, form: ['V', 'V', 'Î', 'Î', 'Î'] },
+      { position: 8, team: teams.arobs.name, short: 'ARO', played: 4, won: 2, drawn: 0, lost: 2, goalsFor: 14, goalsAgainst: 21, points: 6, form: ['V', 'V', 'Î', 'Î'] },
+      { position: 9, team: teams.stranierii.name, short: 'STR', played: 5, won: 2, drawn: 0, lost: 3, goalsFor: 17, goalsAgainst: 16, points: 6, form: ['Î', 'Î', 'Î', 'V', 'V'] },
+      { position: 10, team: teams.ust.name, short: 'UST', played: 5, won: 1, drawn: 2, lost: 2, goalsFor: 22, goalsAgainst: 29, points: 5, form: ['E', 'E', 'Î', 'Î', 'V'] },
+      { position: 11, team: teams.amarena.name, short: 'AMA', played: 4, won: 1, drawn: 0, lost: 3, goalsFor: 10, goalsAgainst: 16, points: 3, form: ['Î', 'Î', 'V', 'Î'] },
+      { position: 12, team: teams.eagles.name, short: 'EAG', played: 4, won: 0, drawn: 1, lost: 3, goalsFor: 7, goalsAgainst: 27, points: 1, form: ['Î', 'Î', 'E', 'Î'] },
+      { position: 13, team: teams.divg.name, short: 'DIV', played: 2, won: 0, drawn: 1, lost: 1, goalsFor: 6, goalsAgainst: 7, points: 1, form: ['Î', 'E'] },
+      { position: 14, team: us, short: 'BSC', played: 5, won: 0, drawn: 0, lost: 5, goalsFor: 11, goalsAgainst: 48, points: 0, form: ['Î', 'Î', 'Î', 'Î', 'Î'] },
     ],
   },
 };
